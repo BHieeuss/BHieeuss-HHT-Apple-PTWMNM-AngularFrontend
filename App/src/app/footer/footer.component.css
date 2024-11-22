@@ -1,0 +1,166 @@
+/* General Footer Styling */
+.site-footer {
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #e9ecef;
+    padding: 20px 0;
+  }
+  
+  
+  /* Footer Headings */
+  .site-footer .footer-heading {
+    font-size: 1.2rem;
+    color: #343a40;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  /* Promo Section */
+  .site-footer .block-6 img {
+    border-radius: 8px;
+    margin-bottom: 15px;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .block-6 {
+    text-decoration: none; /* Loại bỏ gạch chân */
+  }
+  
+  
+  .block-6:hover {
+    text-decoration: none; /* Đảm bảo không có gạch chân khi hover */
+  }
+  .site-footer .block-6 img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .site-footer .block-6 h3 {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #dc3545;
+    margin-bottom: 0.5rem;
+  }
+  
+  .site-footer .block-6 p {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  
+  /* Quick Links */
+  .site-footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .site-footer ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .site-footer ul li a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .site-footer ul li a:hover {
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  /* Contact Info Section */
+  .site-footer .block-5 li {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .site-footer .block-5 .address,
+  .site-footer .block-5 .phone,
+  .site-footer .block-5 .email {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .site-footer .block-5 .phone a,
+  .site-footer .block-5 .email {
+    color: #dc3545;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .site-footer .block-5 .phone a:hover,
+  .site-footer .block-5 .email:hover {
+    color: #ff6b6b;
+  }
+  
+  /* Subscribe Form */
+  .site-footer .block-7 .form-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .site-footer .block-7 .form-control {
+    flex: 1;
+    border-radius: 30px;
+    border: 1px solid #e9ecef;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .site-footer .block-7 .btn-primary {
+    background-color: #dc3545;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .site-footer .block-7 .btn-primary:hover {
+    background-color: #ff6b6b;
+  }
+  
+  /* Footer Bottom */
+  .site-footer .text-center {
+    border-top: 1px solid #e9ecef;
+    padding-top: 20px;
+    margin-top: 30px;
+  }
+  
+  .site-footer .text-center p {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 0;
+  }
+  
+  .site-footer .text-center a {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .site-footer .text-center a:hover {
+    color: #ff6b6b;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .site-footer .row > div {
+      margin-bottom: 30px;
+    }
+  
+    .site-footer .block-7 .form-group {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .site-footer .block-7 .btn-primary {
+      width: 100%;
+    }
+  }
+  

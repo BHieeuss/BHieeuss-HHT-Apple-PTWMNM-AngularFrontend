@@ -1,0 +1,81 @@
+/* Định dạng khung chính */
+.col-md-6 {
+    position: relative;
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Định dạng video */
+video.img-fluid {
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.site-block-cover-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+}
+
+
+.site-block-cover-content h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.site-block-cover-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.site-block-cover-content p {
+    margin: 0;
+}
+
+.site-block-cover-content .btn {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.site-block-cover-content .btn:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+/* Đảm bảo tính responsive */
+@media (max-width: 768px) {
+    .site-block-cover-content h2 {
+        font-size: 1.5rem;
+    }
+    .site-block-cover-content h1 {
+        font-size: 2rem;
+    }
+    .site-block-cover-content .btn {
+        padding: 10px 20px;
+    }
+}
