@@ -1,25 +1,23 @@
 <div class="site-navbar">
   <!-- Menu -->
   <div class="main-nav">
-
-      <!-- Logo -->
+    <!-- Logo -->
     <div class="logo">
       <div class="site-logo">
-        <a href="index.html">HHT- <span style="color: rgb(185, 63, 63);">APPLE</span></a>
+        <a routerLink="/home">HHT- <span style="color: rgb(185, 63, 63);">APPLE</span></a>
       </div>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
- 
         <!-- Menu Items -->
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav mx-auto"> 
-            <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" routerLink="/home">Trang chủ</a></li>
 
-           
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 Danh mục
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -28,14 +26,30 @@
                 </li>
               </ul>
             </li>
-                        
-            <li class="nav-item"><a class="nav-link" href="shop.html">Sản phẩm</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Về chúng tôi</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Liên hệ</a></li>
+
+            <li class="nav-item"><a class="nav-link" routerLink="/shop">Sản phẩm</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/about">Về chúng tôi</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/contact">Liên hệ</a></li>
+
+            <!-- Kiểm tra trạng thái đăng nhập -->
+            <ng-container *ngIf="!isLoggedIn(); else loggedInMenu">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/login">Đăng Nhập</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/register">Đăng ký</a>
+              </li>
+            </ng-container>
+
+            <ng-template #loggedInMenu>
+              <li class="nav-item">
+                <a class="nav-link" href="#" (click)="logout()">Đăng xuất</a>
+              </li>
+            </ng-template>
           </ul>
         </div>
       </div>
     </nav>
   </div>
-  
 </div>
+<router-outlet></router-outlet>

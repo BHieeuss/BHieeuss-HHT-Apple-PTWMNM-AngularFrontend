@@ -1,0 +1,10 @@
+<div class="container mt-5">
+    <h2>Xác thực OTP</h2>
+    <form (submit)="onVerifyOtp()">
+        <div class="mb-3">
+            <label for="otp" class="form-label">OTP</label>
+            <input type="text" id="otp" class="form-control" [(ngModel)]="otp" name="otp" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Xác thực</button>
+    </form>
+</div>
