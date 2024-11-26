@@ -1,18 +1,27 @@
 <div class="site-navbar">
   <!-- Menu -->
   <div class="main-nav">
-    <!-- Logo -->
-    <div class="logo">
-      <div class="site-logo">
-        <a routerLink="/home">HHT- <span style="color: rgb(185, 63, 63);">APPLE</span></a>
-      </div>
-    </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light">
+
+    <nav class="navbar navbar-expand-lg navbar-light py-3">
       <div class="container-fluid">
+        <!-- Logo -->
+        <div class="logo">
+          <div class="site-logo">
+            <a routerLink="/home">HHT- <span style="color: rgb(185, 63, 63);">APPLE</span></a>
+          </div>
+        </div>
+
+        <!-- Nút toggle cho mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
         <!-- Menu Items -->
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav mx-auto">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+          <!-- Danh sách menu -->
+          <ul class="navbar-nav mx-auto align-items-center">
             <li class="nav-item"><a class="nav-link" routerLink="/home">Trang chủ</a></li>
 
             <li class="nav-item dropdown">
@@ -31,25 +40,101 @@
             <li class="nav-item"><a class="nav-link" routerLink="/about">Về chúng tôi</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/contact">Liên hệ</a></li>
 
-            <!-- Kiểm tra trạng thái đăng nhập -->
-            <ng-container *ngIf="!isLoggedIn(); else loggedInMenu">
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/login">Đăng Nhập</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/register">Đăng ký</a>
-              </li>
-            </ng-container>
+            <!-- Tìm kiếm / Giỏ hàng-->
+            <li class="nav-item d-flex align-items-center">
+              <!-- Nút Tìm kiếm -->
+              <button class="btn px-3 py-2 d-flex align-items-center" (click)="toggleSearch()">
+                <i class="bi bi-search"></i>
+              </button>
 
-            <ng-template #loggedInMenu>
-              <li class="nav-item">
-                <a class="nav-link" href="#" (click)="logout()">Đăng xuất</a>
-              </li>
-            </ng-template>
+              <!-- Popup Tìm kiếm -->
+              <div class="modal fade" [ngClass]="{'show': searchActive}"
+                [ngStyle]="{'display': searchActive ? 'block' : 'none'}" tabindex="-1" role="dialog"
+                aria-hidden="!searchActive">
+                <div class="modal-backdrop fade show" *ngIf="searchActive"></div> <!-- Backdrop mờ -->
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Tìm kiếm</h5>
+                      <button type="button" class="btn-close" (click)="toggleSearch()" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <input type="text" class="form-control" placeholder="Nhập từ khóa để tìm kiếm..."
+                        [(ngModel)]="searchQuery" />
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" (click)="toggleSearch()">Đóng</button>
+                      <button type="button" class="btn btn-primary" (click)="performSearch()">Tìm kiếm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!-- Giỏ hàng -->
+              <ng-container *ngIf="isLoggedIn()">
+                <!-- Giỏ hàng -->
+                <a class="btn d-flex align-items-center" routerLink="/cart">
+                  <i class="bi bi-cart me-1"></i>{{ cartCount }}
+                </a>
+              </ng-container>
+            </li>
+          </ul>
+          <!-- Tài khoản -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+
+              <ng-container *ngIf="isLoggedIn(); else loginMenu">
+                <!-- Dropdown khi đã đăng nhập -->
+                <a class="btn btn-primary dropdown-toggle d-flex align-items-center gap-2 px-3 py-2 rounded-pill"
+                  id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-person-circle"></i>
+                  Hi, {{ email }}
+                </a>
+
+                <!-- Danh sách trong dropdown -->
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                  <li>
+                    <a class="dropdown-item" routerLink="/profile">
+                      <i class="bi bi-person"></i> Truy cập hồ sơ
+                    </a>
+                  </li>
+
+                  <!-- Hiển thị "Quản lý cửa hàng" nếu người dùng là admin -->
+                  <li *ngIf="isAdmin()">
+                    <a class="dropdown-item" routerLink="/admin/home">
+                      <i class="bi bi-gear"></i> Quản lý cửa hàng
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item" href="#" (click)="logout()">
+                      <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                    </a>
+                  </li>
+                </ul>
+              </ng-container>
+
+
+
+
+              <!-- Nút Đăng nhập/ Đăng ký -->
+              <ng-template #loginMenu>
+                <a class="btn btn-primary d-flex align-items-center gap-2 px-3 py-2 rounded-pill" routerLink="/login">
+                  <i class="bi bi-person-circle"></i>
+                  Tài khoản
+                </a>
+              </ng-template>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
+
+
+
   </div>
 </div>
+<app-breadcrumb></app-breadcrumb>
 <router-outlet></router-outlet>

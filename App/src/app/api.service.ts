@@ -41,19 +41,17 @@ export class ApiService {
         return this.http.post(`${this.baseUrl}/user/login`, loginData);
       }
 
+      getUserByEmail(email: string): Observable<any> {
+        // Thay đổi phương thức từ POST sang GET, truyền email qua query string
+        return this.http.get(`${this.baseUrl}/user/get-by-email?email=${email}`);
+      }
+
       // Xử lý đăng nhập thành công
       loginSuccess(email: string) {
         if (isPlatformBrowser(this.platformId)) {
           localStorage.setItem('email', email);
+          
           this.isLoggedInSubject.next(true);
-        }
-      }
-
-      // Đăng xuất
-      logout() {
-        if (isPlatformBrowser(this.platformId)) {
-          localStorage.removeItem('email');
-          this.isLoggedInSubject.next(false);
         }
       }
   }

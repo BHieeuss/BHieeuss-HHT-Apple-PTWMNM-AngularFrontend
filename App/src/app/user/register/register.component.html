@@ -1,14 +1,43 @@
-<div class="container mt-5">
-    <h2>Đăng ký</h2>
-    <form (ngSubmit)="onRegister()">
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email" required />
+<div class="container d-flex align-items-center justify-content-center vh-50">
+    <div class="row w-100 shadow-lg rounded overflow-hidden" style="max-width: 900px;">
+        <!-- Video bên trái -->
+        <div class="col-md-6 d-none d-md-block p-0">
+            <video class="img-fluid h-100 w-100" autoplay loop muted playsinline style="object-fit: cover;">
+                <source src="/assets/img/bglogin.mp4" type="video/mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ video.
+            </video>
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Mật khẩu</label>
-            <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password" required />
+
+        <!-- Form đăng ký bên phải -->
+        <div class="col-md-6 p-5 bg-white">
+            <h2 class="text-center mb-4 fw-bold">ĐĂNG KÝ</h2>
+            <form (ngSubmit)="onRegister()">
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control form-control-lg" [(ngModel)]="email" name="email"
+                        required />
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <input type="password" id="password" class="form-control form-control-lg" [(ngModel)]="password"
+                        name="password" required />
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary btn-lg w-100">
+                    Đăng ký
+                </button>
+
+                <!-- Login -->
+                <div class="text-center mt-3">
+                    Đã có tài khoản? <a class="text-decoration-none fw-bold" routerLink="/login">Đăng nhập</a>
+                </div>
+            </form>
+
         </div>
-        <button type="submit" class="btn btn-primary">Đăng ký</button>
-    </form>
+    </div>
 </div>
+<br>

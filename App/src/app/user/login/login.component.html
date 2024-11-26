@@ -1,31 +1,28 @@
-<div>
-  <ul>
-    <li>Trang chủ/</li>
-    <li>Đăng nhập</li>
-  </ul>
-</div>
 <div class="container d-flex align-items-center justify-content-center vh-50">
   <div class="row w-100 shadow-lg rounded overflow-hidden" style="max-width: 900px;">
-    <!-- Hình ảnh bên trái -->
+    <!-- Video bên trái -->
     <div class="col-md-6 d-none d-md-block p-0">
-      <img src="https://via.placeholder.com/450x600" alt="Login Banner" class="img-fluid h-100 w-100"
-        style="object-fit: cover;" />
+      <video class="img-fluid h-100 w-100" autoplay loop muted playsinline style="object-fit: cover;">
+        <source src="/assets/img/bglogin.mp4" type="video/mp4" type="video/mp4">
+        Trình duyệt của bạn không hỗ trợ video.
+      </video>
     </div>
+
 
     <!-- Form đăng nhập bên phải -->
     <div class="col-md-6 p-5 bg-white">
-      <h2 class="text-center mb-4 fw-bold">Welcome back!</h2>
+      <h2 class="text-center mb-4 fw-bold">Chào mừng quay trở lại!</h2>
       <form (ngSubmit)="onLogin()">
         <!-- Email -->
         <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
+          <label for="email" class="form-label">Email</label>
           <input type="email" id="email" class="form-control form-control-lg" [(ngModel)]="email" name="email"
             required />
         </div>
 
         <!-- Password -->
         <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
+          <label for="password" class="form-label">Mật khẩu</label>
           <input type="password" id="password" class="form-control form-control-lg" [(ngModel)]="password"
             name="password" required />
         </div>
@@ -33,12 +30,15 @@
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary btn-lg w-100">
-          SIGN IN
+          Đăng nhập
         </button>
-
+        <!-- Create account -->
+        <div class="text-center mt-3">
+          Chưa có tài khoản? <a class="text-decoration-none fw-bold" routerLink="/register">Đăng ký</a>
+        </div>
         <!-- Forgot password -->
         <div class="text-center mt-3">
-          <a href="#" class="text-decoration-none">Forgot password?</a>
+          <a href="#" class="text-decoration-none nav-link">Quên mật khẩu?</a>
         </div>
       </form>
 

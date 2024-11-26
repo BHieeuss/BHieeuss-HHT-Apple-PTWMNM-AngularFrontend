@@ -1,0 +1,20 @@
+.breadcrumb {
+  background-color: #f8f9fa; 
+  border-radius: 0.25rem; 
+  padding: 0.5rem 1rem;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500; 
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline; 
+}
+
+.breadcrumb-item.active {
+  color: #6c757d; 
+}
