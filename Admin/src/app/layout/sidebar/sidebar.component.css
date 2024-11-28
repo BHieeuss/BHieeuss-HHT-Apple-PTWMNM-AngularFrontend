@@ -1,0 +1,62 @@
+/* Sidebar */
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding-top: 20px;
+  background-color: #343a40;  /* Màu nền tối cho sidebar */
+}
+
+#page-content-wrapper {
+  margin-left: 250px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Title Sidebar */
+.sidebar-title {
+  font-size: 1.5rem;
+  color: #ffffff;  /* Màu trắng cho tiêu đề */
+  padding: 10px;
+}
+
+/* List items trong Sidebar */
+.list-group-item {
+  background-color: #343a40;  /* Màu nền tối */
+  color: #fff;  /* Màu chữ sáng */
+  border: none;  /* Xóa viền */
+}
+
+.list-group-item:hover {
+  background-color: #495057;  /* Màu nền khi hover (sáng hơn) */
+}
+
+.list-group-item.active {
+  background-color: #007bff;  /* Màu nền khi mục được chọn */
+  color: white;  /* Màu chữ khi active */
+}
+
+/* Menu toggle button */
+#menu-toggle {
+  font-size: 1.5rem;
+  color: #007bff;  /* Màu cho nút menu toggle */
+}
+
+.navbar {
+  background-color: #f8f9fa;  /* Màu nền sáng cho navbar */
+}
+
+/* Điều chỉnh khi thu nhỏ màn hình */
+@media (max-width: 768px) {
+  #sidebar {
+    display: none;
+  }
+
+  #page-content-wrapper {
+    margin-left: 0;
+  }
+}

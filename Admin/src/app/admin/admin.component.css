@@ -1,0 +1,26 @@
+/* CSS tùy chỉnh cho navbar */
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .app-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  
+  .logo img {
+    height: 40px;
+    width: auto;
+  }
+  
+  mat-toolbar button {
+    font-size: 16px;
+    margin-left: 15px;
+  }
+  

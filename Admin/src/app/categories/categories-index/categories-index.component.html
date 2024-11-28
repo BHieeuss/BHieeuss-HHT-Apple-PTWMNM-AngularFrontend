@@ -1,0 +1,38 @@
+<!-- Nút thêm mới -->
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-end mt-4">
+        <button class="btn btn-success" (click)="addCategory()">Thêm danh mục</button>
+    </div>
+    <hr>
+    <!-- Card chứa danh sách danh mục -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Quản lý Danh mục</h5>
+        </div>
+        <div class="card-body">
+            <!-- Bảng danh mục -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Tên Danh mục</th>
+                        <th scope="col" class="text-center">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Hiển thị danh sách danh mục -->
+                    <tr *ngFor="let category of categories">
+                        <td>{{ category.category_name }}</td>
+                        <td class="text-center">
+                            <!-- Nút sửa -->
+                            <button class="btn btn-sm btn-primary" (click)="editCategory(category)">
+                                <i class="bi bi-pencil"></i> Sửa
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+</div>
