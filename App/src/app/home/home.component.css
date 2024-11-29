@@ -19,22 +19,17 @@ video.img-fluid {
     object-fit: cover;
     z-index: 1;
 }
-
 .site-block-cover-content {
     position: absolute;
-    top: 50%;
+    bottom: 0;
     left: 50%;
-    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 15px;
-    backdrop-filter: blur(5px); 
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: 2;
     text-align: center;
     color: #fff;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
     padding: 20px;
 }
-
 
 .site-block-cover-content h2 {
     font-size: 2rem;
@@ -54,38 +49,16 @@ video.img-fluid {
     margin: 0;
 }
 
-.site-block-cover-content .btn {
+.site-block-cover-content .btn-custom {
     background-color: #ffffff; 
-    color: #000000; 
-    padding: 15px 30px;
-    border: 2px solid transparent; 
-    border-radius: 8px;
-    font-weight: bold; 
-    font-size: 1rem; 
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    transition: all 0.3s ease; 
+    color: #393939; 
+    padding: 15px 30px; 
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
     text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
-  }
-  
-  .site-block-cover-content .btn:active {
-    transform: scale(0.98);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
-  }
-  
-
-/* Đảm bảo tính responsive */
-@media (max-width: 768px) {
-    .site-block-cover-content h2 {
-        font-size: 1.5rem;
-    }
-    .site-block-cover-content h1 {
-        font-size: 2rem;
-    }
-    .site-block-cover-content .btn {
-        padding: 10px 20px;
-    }
+    display: inline-block; 
+    text-align: center;
 }
 
-/* ------------------------------------------------------------------ */

@@ -1,1 +1,54 @@
-<p>products works!</p>
+<!-- Nút thêm mới -->
+<div class="container mt-4">
+    <div class="d-flex justify-content-end mt-4">
+        <button class="btn btn-success" (click)="addProduct()">Thêm sản phẩm</button>
+    </div>
+    <hr>
+    <!-- Card chứa danh sách sản phẩm -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Quản lý Sản phẩm</h5>
+        </div>
+        <div class="card-body">
+            <!-- Bảng sản phẩm -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Tên Sản phẩm</th>
+                        <th scope="col">Mô tả</th>
+                        <th scope="col">Chi tiết sản phẩm</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Giảm giá</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Danh mục</th>
+                        <th scope="col">Kích hoạt</th>
+                        <th scope="col" class="text-center">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Hiển thị danh sách sản phẩm -->
+                    <tr *ngFor="let product of products">
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.product_detail }}</td>
+                        <td>{{ product.price | currency }}</td>
+                        <td>{{ product.discount | currency }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ getCategoryName(product.category_id) }}</td>
+                        <td>
+                            <span *ngIf="product.is_actived" class="badge bg-success">Kích hoạt</span>
+                            <span *ngIf="!product.is_actived" class="badge bg-danger">Không kích hoạt</span>
+                        </td>
+                        <td class="text-center">
+                            <!-- Nút sửa -->
+                            <button class="btn btn-sm btn-primary" (click)="editProduct(product.product_id)">
+                                <i class="bi bi-pencil"></i> Sửa
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+</div>

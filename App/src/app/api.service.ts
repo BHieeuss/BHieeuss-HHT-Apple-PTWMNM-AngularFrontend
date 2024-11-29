@@ -35,6 +35,7 @@ export class ApiService {
     verifyOtp(otpData: { email: string; otp: string }): Observable<any> {
       return this.http.put(`${this.baseUrl}/user/vertify-otp`, otpData);
     }
+    
 
      // Đăng nhập
      login(loginData: { email: string; password: string }) {
@@ -54,10 +55,14 @@ export class ApiService {
           this.isLoggedInSubject.next(true);
         }
       }
+      // Get thông tin tài khoản
       getUserByEmail(email: string): Observable<any> {
-        // Thay đổi phương thức từ POST sang GET, truyền email qua query string
         return this.http.get(`${this.baseUrl}/user/get-by-email?email=${email}`);
       }
-
       
+      // Cập nhật thông tin tài khoản
+      updateProfile(userId: number, userData: any): Observable<any> {
+        return this.http.put(`${this.baseUrl}/user/update-profile/${userId}`, userData);
+      }
+    
   }

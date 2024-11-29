@@ -1,0 +1,56 @@
+<div class="container mt-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img *ngIf="user.img_avatar; else placeholder" [src]="'https://localhost:1009/' + user.img_avatar"
+                        alt="Profile Image" class="img-fluid rounded-circle mb-3" style="width: 120px;" />
+                    <ng-template #placeholder>
+                        <img src="https://via.placeholder.com/150" alt="Profile Image"
+                            class="img-fluid rounded-circle mb-3" style="width: 120px;" />
+                    </ng-template>
+                    <h5 class="card-title">{{ user.username || 'Chưa có tên' }}</h5>
+                    <p class="card-text">{{ user.email || 'Chưa có email' }}</p>
+                    <button class="btn btn-primary" (click)="openUpdateProfileDialog()">Cập nhật tài khoản</button>
+                    <a href="javascript:void(0)" class="btn btn-info btn-block mt-2">Xem đơn
+                        hàng</a>
+                    <a href="javascript:void(0)" class="btn btn-success btn-block mt-2">Thêm địa
+                        chỉ</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+            <!-- Account Information -->
+            <div class="card">
+                <div class="card-header">
+                    <h5>Thông tin tài khoản</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Thông tin tài khoản -->
+                    <p><strong>Họ tên:</strong> {{ user.username || 'Chưa có thông tin' }}</p>
+                    <p><strong>Email:</strong> {{ user.email || 'Chưa có thông tin' }}</p>
+                    <p><strong>Số điện thoại:</strong> {{ user.phone_number || 'Chưa có thông tin' }}</p>
+                    <p><strong>Địa chỉ:</strong> {{ user.address || 'Chưa có địa chỉ' }}</p>
+
+                </div>
+            </div>
+
+            <!-- Address Management -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5>Quản lý địa chỉ</h5>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let address of addresses">
+                        <p><strong>{{ address.label }}:</strong> {{ address.address }}</p>
+                        <button class="btn btn-warning btn-sm">Chỉnh sửa</button>
+                        <button class="btn btn-danger btn-sm ml-2">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+/* Đảm bảo các phần tử trong profile có layout phù hợp */
+.card-header h5 {
+    font-size: 1.25rem;
+  }
+  
+  .card-body {
+    font-size: 1rem;
+    padding: 20px;
+  }
+  
+  .card-body p {
+    margin-bottom: 1rem;
+  }
+  
+  .card .btn-block {
+    margin-bottom: 10px;
+  }
+  
