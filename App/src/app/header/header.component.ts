@@ -38,6 +38,14 @@ export class HeaderComponent implements OnInit {
             this.userInfo = response[0]; 
             console.log('User Info:', this.userInfo);
             console.log('User Roles:', this.userInfo.roles);
+
+            // Kiểm tra nếu vai trò là 1, thì lưu vào cookie
+            if (this.userInfo.roles === 1) {
+              document.cookie = "userRole=1; path=/; SameSite=Lax;";
+              console.log('User role 1 saved to cookie');
+              console.log(document.cookie);
+
+            }
           },
           error: (err) => {
             console.error('Lỗi khi lấy thông tin người dùng:', err);
@@ -63,11 +71,14 @@ export class HeaderComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('email'); 
       localStorage.removeItem('userInfo');
+    this.deleteCookie('userRole');
     }
     alert('Bạn đã đăng xuất.');
     this.router.navigate(['/login']); 
   }
-
+  private deleteCookie(name: string): void {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax;`;
+  }
   toggleSearch() {
     this.searchActive = !this.searchActive;
   }
@@ -87,6 +98,9 @@ export class HeaderComponent implements OnInit {
     }
     return false;
   }
-  
+
+  navigateToAdmin() {
+    window.location.href = 'http://localhost:4201/#/home';
+  }
 
 }

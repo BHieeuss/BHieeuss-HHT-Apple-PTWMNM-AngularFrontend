@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -37,14 +37,14 @@ export class ApiService {
     }
 
      // Đăng nhập
-      login(loginData: { email: string; password: string }) {
-        return this.http.post(`${this.baseUrl}/user/login`, loginData);
-      }
-
-      getUserByEmail(email: string): Observable<any> {
-        // Thay đổi phương thức từ POST sang GET, truyền email qua query string
-        return this.http.get(`${this.baseUrl}/user/get-by-email?email=${email}`);
-      }
+     login(loginData: { email: string; password: string }) {
+      return this.http.post(`${this.baseUrl}/user/login`, loginData).pipe(
+        catchError((err) => {
+          throw err;
+        })
+      );
+    }
+    
 
       // Xử lý đăng nhập thành công
       loginSuccess(email: string) {
@@ -54,4 +54,10 @@ export class ApiService {
           this.isLoggedInSubject.next(true);
         }
       }
+      getUserByEmail(email: string): Observable<any> {
+        // Thay đổi phương thức từ POST sang GET, truyền email qua query string
+        return this.http.get(`${this.baseUrl}/user/get-by-email?email=${email}`);
+      }
+
+      
   }

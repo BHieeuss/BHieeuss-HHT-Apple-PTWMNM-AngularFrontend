@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "App": {
-      "projectType": "application",
+      "projectType": "application",   
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
@@ -72,6 +72,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {        
+            "port": 4200
+          },
           "configurations": {
             "production": {
               "buildTarget": "App:build:production"

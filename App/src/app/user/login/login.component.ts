@@ -21,20 +21,24 @@ export class LoginComponent {
   onLogin() {
     const loginData = { email: this.email, password: this.password };
   
-    this.apiService.getUserByEmail(this.email).subscribe({
-      next: (userInfo: any) => {
-        // Lưu email và thông tin người dùng vào localStorage
-        localStorage.setItem('email', this.email);
-        localStorage.setItem('userInfo', JSON.stringify(userInfo));  // Lưu toàn bộ thông tin người dùng vào localStorage
-        
-        // Cập nhật trạng thái đăng nhập thành công
-        this.apiService.loginSuccess(this.email);  
-        alert('Đăng nhập thành công!');
-        this.router.navigate(['/home']);
+    this.apiService.login(loginData).subscribe({
+      next: (response: any) => {
+        if (response.message === 'Login successful.') {
+          localStorage.setItem('email', this.email);
+          localStorage.setItem('userInfo', JSON.stringify(response.userInfo));
+  
+          this.apiService.loginSuccess(this.email);
+          alert('Đăng nhập thành công!');
+          this.router.navigate(['/home']);
+        }
       },
       error: (err) => {
-        console.error('Lỗi khi lấy thông tin người dùng:', err);
-        this.errorMessage = 'Lỗi khi lấy thông tin người dùng. Vui lòng thử lại.';
+        if (err.status === 401) {
+          this.errorMessage = 'Mật khẩu không đúng. Vui lòng thử lại.';
+        } else {
+          this.errorMessage = 'Lỗi đăng nhập. Vui lòng thử lại.';
+        }
+        console.error('Lỗi khi đăng nhập:', err);
       }
     });
   }

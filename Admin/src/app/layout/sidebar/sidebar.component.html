@@ -1,13 +1,13 @@
 <div class="d-flex" id="wrapper">
   <!-- Sidebar -->
-  <div class="bg-dark text-white" id="sidebar">
+  <div class="bg-dark text-white" id="sidebar" *ngIf="showNav">
     <div class="sidebar-header">
       <h1 class="sidebar-title">Trang Chủ</h1>
       <hr>
     </div>
     <div class="list-group">
       <!-- Danh mục sản phẩm -->
-      <a routerLink="/categories-index" class="list-group-item list-group-item-action text-white">
+      <a routerLink="/categories" class="list-group-item list-group-item-action text-white">
         <i class="bi bi-grid-1x2"></i> Danh mục sản phẩm
       </a>
       <!-- Trang 1 -->
@@ -23,7 +23,7 @@
 
   <!-- Content Area -->
   <div id="page-content-wrapper">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="showNav">
       <button class="btn btn-light" id="menu-toggle">
         <i class="bi bi-list"></i>
       </button>

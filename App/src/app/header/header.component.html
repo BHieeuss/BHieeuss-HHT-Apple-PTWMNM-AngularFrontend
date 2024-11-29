@@ -103,7 +103,7 @@
 
                   <!-- Hiển thị "Quản lý cửa hàng" nếu người dùng là admin -->
                   <li *ngIf="isAdmin()">
-                    <a class="dropdown-item" routerLink="/admin/home">
+                    <a class="dropdown-item" (click)="navigateToAdmin()" style="cursor: pointer;">
                       <i class="bi bi-gear"></i> Quản lý cửa hàng
                     </a>
                   </li>

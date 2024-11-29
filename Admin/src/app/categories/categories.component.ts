@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../api.service';
-import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
-
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-categories-index',
+  selector: 'app-categories',
   imports: [CommonModule],
-  templateUrl: './categories-index.component.html',
-  styleUrls: ['./categories-index.component.css']
+  templateUrl: './categories.component.html',
+  styleUrl: './categories.component.css'
 })
-
-export class CategoriesIndexComponent implements OnInit {
+export class CategoriesComponent implements OnInit {
   categories: any[] = [];
 
   constructor(private categoryService: ApiService) {}
@@ -46,7 +44,7 @@ export class CategoriesIndexComponent implements OnInit {
             Swal.fire('Thêm danh mục thành công!', '', 'success');
             setTimeout(() => {
               window.location.reload();
-            }, 2000);
+            }, 1000); 
           },
           (error) => {
             console.error('Có lỗi khi thêm danh mục:', error);

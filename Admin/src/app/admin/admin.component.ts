@@ -13,7 +13,4 @@ import { SidebarComponent } from '../layout/sidebar/sidebar.component';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-  logout() {
-    console.log('Logged out');
-  }
 }
