@@ -60,3 +60,7 @@
     margin-left: 0;
   }
 }
+.nav-link.active {
+  background-color: #f8f9fa;  /* Ví dụ: thay đổi màu nền */
+  color: #000;  /* Ví dụ: thay đổi màu chữ */
+}

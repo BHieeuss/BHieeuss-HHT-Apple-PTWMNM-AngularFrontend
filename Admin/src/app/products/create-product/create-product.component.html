@@ -1,0 +1,46 @@
+<div class="container mt-4">
+    <h3>Thêm Sản phẩm</h3>
+    <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="productName" class="form-label">Tên Sản phẩm</label>
+            <input type="text" class="form-control" id="productName" formControlName="product_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Mô tả</label>
+            <textarea class="form-control" id="description" formControlName="description" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="productColor" class="form-label">Màu sắc</label>
+            <input type="text" class="form-control" id="productColor" formControlName="product_color" required>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Giá</label>
+            <input type="number" class="form-control" id="price" formControlName="price" required>
+        </div>
+        <div class="mb-3">
+            <label for="discount" class="form-label">Giảm giá</label>
+            <input type="number" class="form-control" id="discount" formControlName="discount">
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Số lượng</label>
+            <input type="number" class="form-control" id="quantity" formControlName="quantity" required>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Danh mục</label>
+            <select class="form-control" id="category" formControlName="category_id" required>
+                <option value="1">Danh mục 1</option>
+                <option value="2">Danh mục 2</option>
+                <option value="3">Danh mục 3</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="isActive" class="form-label">Kích hoạt</label>
+            <input type="checkbox" id="isActive" formControlName="is_actived">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Ảnh sản phẩm</label>
+            <input type="file" class="form-control" id="image" (change)="onImageChange($event)">
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="addProductForm.invalid">Thêm Sản phẩm</button>
+    </form>
+</div>

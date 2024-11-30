@@ -1,7 +1,7 @@
 <!-- Nút thêm mới -->
 <div class="container mt-4">
     <div class="d-flex justify-content-end mt-4">
-        <button class="btn btn-success" (click)="addProduct()">Thêm sản phẩm</button>
+        <a class="btn btn-success" routerLink="/products/create-product">Thêm sản phẩm</a>
     </div>
     <hr>
     <!-- Card chứa danh sách sản phẩm -->
@@ -15,8 +15,6 @@
                 <thead>
                     <tr>
                         <th scope="col">Tên Sản phẩm</th>
-                        <th scope="col">Mô tả</th>
-                        <th scope="col">Chi tiết sản phẩm</th>
                         <th scope="col">Giá</th>
                         <th scope="col">Giảm giá</th>
                         <th scope="col">Số lượng</th>
@@ -29,8 +27,6 @@
                     <!-- Hiển thị danh sách sản phẩm -->
                     <tr *ngFor="let product of products">
                         <td>{{ product.product_name }}</td>
-                        <td>{{ product.description }}</td>
-                        <td>{{ product.product_detail }}</td>
                         <td>{{ product.price | currency }}</td>
                         <td>{{ product.discount | currency }}</td>
                         <td>{{ product.quantity }}</td>
@@ -49,6 +45,7 @@
                 </tbody>
             </table>
         </div>
+        <router-outlet></router-outlet>
     </div>
     <hr>
 </div>

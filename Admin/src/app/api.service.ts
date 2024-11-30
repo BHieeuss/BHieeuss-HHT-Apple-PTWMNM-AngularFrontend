@@ -41,7 +41,8 @@ export class ApiService {
       discount: product.discount,
       quantity: product.quantity,
       category_id: product.category_id,
-      is_actived: product.is_actived
+      is_actived: product.is_actived,
+      imageData: product.imageData
     });
   }
 

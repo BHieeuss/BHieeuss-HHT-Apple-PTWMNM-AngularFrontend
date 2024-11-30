@@ -31,7 +31,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li *ngFor="let category of categories">
-                  <a class="dropdown-item" href="#">{{ category.category_name }}</a>
+                  <a class="dropdown-item" href="#" style="color: black;">{{ category.category_name }}</a>
                 </li>
               </ul>
             </li>
@@ -88,7 +88,7 @@
               <ng-container *ngIf="isLoggedIn(); else loginMenu">
                 <!-- Dropdown khi đã đăng nhập -->
                 <a class="btn btn-primary dropdown-toggle d-flex align-items-center gap-2 px-3 py-2 rounded-pill"
-                  id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
                   <i class="bi bi-person-circle"></i>
                   Hi, {{ email }}
                 </a>
@@ -96,20 +96,20 @@
                 <!-- Danh sách trong dropdown -->
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                   <li>
-                    <a class="dropdown-item" routerLink="/profile">
+                    <a class="dropdown-item" routerLink="/profile" style="color: black;">
                       <i class="bi bi-person"></i> Truy cập hồ sơ
                     </a>
                   </li>
 
                   <!-- Hiển thị "Quản lý cửa hàng" nếu người dùng là admin -->
                   <li *ngIf="isAdmin()">
-                    <a class="dropdown-item" (click)="navigateToAdmin()" style="cursor: pointer;">
+                    <a class="dropdown-item" (click)="navigateToAdmin()" style="cursor: pointer;" style="color: black;">
                       <i class="bi bi-gear"></i> Quản lý cửa hàng
                     </a>
                   </li>
 
                   <li>
-                    <a class="dropdown-item" href="#" (click)="logout()">
+                    <a class="dropdown-item" href="#" (click)="logout()" style="color: black;">
                       <i class="bi bi-box-arrow-right"></i> Đăng xuất
                     </a>
                   </li>
@@ -132,6 +132,10 @@
       </div>
     </nav>
 
+    <!-- Nút nhắn tin Zalo -->
+    <a href="https://zalo.me/0379932119" target="_blank" id="zaloButton" title="Nhắn tin Zalo">
+      <img src="/assets/img/zalo-icon.png" alt="Zalo" />
+    </a>
 
 
   </div>

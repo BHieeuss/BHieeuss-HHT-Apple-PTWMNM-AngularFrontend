@@ -108,7 +108,7 @@
     margin-bottom: 30px;
   }
   
-  .site-section .block-16 img {
+  .site-section .block-16 {
     width: 100%;
     border-radius: 10px;
   }
@@ -151,7 +151,7 @@
   }
   
   .site-section .block-38-img img {
-    width: 100%;
+    width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
@@ -189,5 +189,11 @@
     font-size: 2rem;
     font-weight: 700;
     color: #333;
+  }
+  .team-image {
+    width: 150px;  
+    height: 150px;
+    border-radius: 50%; 
+    object-fit: cover;
   }
   

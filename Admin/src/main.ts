@@ -12,8 +12,8 @@ import { CategoriesComponent } from './app/categories/categories.component';
 import { ProductsComponent } from './app/products/products.component';
 import { AccessDeniedComponent } from './app/access-denied/access-denied.component';
 import { RoleGuard } from './app/role.guard';
-import { AdminComponent } from './app/admin/admin.component';
 import { HomeComponent } from './app/admin/home/home.component';
+import { CreateProductComponent } from './app/create-product/create-product.component';
 
 
 
@@ -22,7 +22,11 @@ registerLocaleData(localeVi, 'vi');
 const routes: Routes = [
   {path: 'access-denied', component: AccessDeniedComponent},
   {path: 'home', component: HomeComponent, canActivate: [RoleGuard]},
-  {path: 'products', component: ProductsComponent, canActivate: [RoleGuard]},
+  { path: 'create-product', component: CreateProductComponent, canActivate: [RoleGuard]},
+  { path: 'products', component: ProductsComponent, children: [
+    { path: 'create-product', component: CreateProductComponent }
+  ]},
+
   {path: 'categories', component: CategoriesComponent, canActivate: [RoleGuard]},
   { path: 'home', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', redirectTo: '/access-denied' }
