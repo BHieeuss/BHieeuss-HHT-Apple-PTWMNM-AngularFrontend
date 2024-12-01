@@ -46,33 +46,34 @@ export class ApiService {
     });
   }
 
+ // Lấy sản phẩm theo ID
+ getProductById(productId: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/product/get-by-id/${productId}`);
+}
 
-  updateProduct(
-    productId: number, 
-    productName: string, 
-    description: string, 
-    productDetail: string, 
-    price: number, 
-    discount: number, 
-    quantity: number, 
-    categoryId: number, 
-    isActived: boolean
-  ): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/product/update/${productId}`, {
-      product_name: productName,
-      description: description,
-      product_detail: productDetail,
-      price: price,
-      discount: discount,
-      quantity: quantity,
-      category_id: categoryId,
-      is_actived: isActived
-    });
-  }
-  
+// Cập nhật sản phẩm
+updateProduct(productId: number, product: any): Observable<any> {
+  return this.http.put<any>(`${this.apiUrl}/product/update/${productId}`, product);
+}
 
-  // Lấy thông tin sản phẩm theo ID
-  getProductById(productId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/product/get-by-id/${productId}`);
-  }
+
+// Lấy tất cả Mã giảm giá
+getAllCoupons(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/coupon/get-all`);
+}
+
+ // Phương thức tạo coupon
+ createCoupon(coupon: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/coupon/create`, coupon);
+}
+
+// Lấy thông tin coupon theo ID
+getCouponById(couponId: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/coupon/get-by-id/${couponId}`);
+}
+
+// Cập nhật thông tin coupon
+updateCoupon(couponId: number, coupon: any): Observable<any> {
+  return this.http.put<any>(`${this.apiUrl}/coupon/update/${couponId}`, coupon);
+}
 }

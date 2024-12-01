@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>Cập nhật sản phẩm</h2>
+
+  <form (ngSubmit)="onSubmit()" #productForm="ngForm">
+    <div class="mb-3">
+      <label for="product_name" class="form-label">Tên sản phẩm</label>
+      <input type="text" class="form-control" id="product_name" [(ngModel)]="product.product_name" name="product_name"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Mô tả</label>
+      <textarea class="form-control" id="description" [(ngModel)]="product.description" name="description"
+        required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="product_detail" class="form-label">Chi tiết sản phẩm</label>
+      <textarea class="form-control" id="product_detail" [(ngModel)]="product.product_detail" name="product_detail"
+        required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Giá</label>
+      <input type="number" class="form-control" id="price" [(ngModel)]="product.price" name="price" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="discount" class="form-label">Giảm giá</label>
+      <input type="number" class="form-control" id="discount" [(ngModel)]="product.discount" name="discount" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Số lượng</label>
+      <input type="number" class="form-control" id="quantity" [(ngModel)]="product.quantity" name="quantity" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="category_id" class="form-label">Danh mục</label>
+      <select class="form-control" id="category_id" [(ngModel)]="product.category_id" name="category_id" required>
+        <option *ngFor="let category of categories" [value]="category.category_id">{{ category.category_name }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Chọn ảnh</label>
+      <input type="file" class="form-control" (change)="onImageSelected($event)">
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="is_actived" [(ngModel)]="product.is_actived"
+        name="is_actived">
+      <label class="form-check-label" for="is_actived">Kích hoạt</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cập nhật sản phẩm</button>
+  </form>
+</div>

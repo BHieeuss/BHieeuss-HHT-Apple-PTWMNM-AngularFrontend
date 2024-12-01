@@ -1,0 +1,33 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Mã Coupon</th>
+            <th scope="col">Mô tả</th>
+            <th scope="col">Ngày bắt đầu</th>
+            <th scope="col">Ngày kết thúc</th>
+            <th scope="col">Giảm giá (%)</th>
+            <th scope="col">Lần sử dụng</th>
+            <th scope="col">Kích hoạt</th>
+            <th scope="col" class="text-center">Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let coupon of coupons">
+            <td>{{ coupon.code }}</td>
+            <td>{{ coupon.description }}</td>
+            <td>{{ coupon.start_date }}</td>
+            <td>{{ coupon.end_date }}</td>
+            <td>{{ coupon.discount_percent }}%</td>
+            <td>{{ coupon.times_available }}</td>
+            <td>
+                <span *ngIf="coupon.is_actived" class="badge bg-success">Kích hoạt</span>
+                <span *ngIf="!coupon.is_actived" class="badge bg-danger">Không kích hoạt</span>
+            </td>
+            <td class="text-center">
+                <button class="btn btn-sm btn-primary" [routerLink]="['/coupons/update-coupon', coupon.coupon_id]">
+                    <i class="bi bi-pencil"></i> Sửa
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,48 @@
+<!-- Tạo coupon mới -->
+<div class="container">
+  <h2>Tạo Coupon mới</h2>
+  <form (ngSubmit)="createCoupon()">
+    <div class="mb-3">
+      <label for="code" class="form-label">Mã Coupon</label>
+      <input type="text" id="code" class="form-control" [(ngModel)]="coupon.code" name="code" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Mô tả</label>
+      <input type="text" id="description" class="form-control" [(ngModel)]="coupon.description" name="description"
+        required />
+    </div>
+
+    <div class="mb-3">
+      <label for="start_date" class="form-label">Ngày bắt đầu</label>
+      <input type="datetime-local" id="start_date" class="form-control" [(ngModel)]="coupon.start_date"
+        name="start_date" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="end_date" class="form-label">Ngày kết thúc</label>
+      <input type="datetime-local" id="end_date" class="form-control" [(ngModel)]="coupon.end_date" name="end_date"
+        required />
+    </div>
+
+    <div class="mb-3">
+      <label for="discount_percent" class="form-label">Tỷ lệ giảm giá (%)</label>
+      <input type="number" id="discount_percent" class="form-control" [(ngModel)]="coupon.discount_percent"
+        name="discount_percent" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="times_available" class="form-label">Số lần sử dụng</label>
+      <input type="number" id="times_available" class="form-control" [(ngModel)]="coupon.times_available"
+        name="times_available" required />
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" [(ngModel)]="coupon.is_actived" name="is_actived" id="is_actived"
+        (change)="onIsActivedChange($event)" />
+      <label class="form-check-label" for="is_actived">Kích hoạt</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Tạo Coupon</button>
+  </form>
+</div>

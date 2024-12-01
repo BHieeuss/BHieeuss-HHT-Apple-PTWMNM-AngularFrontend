@@ -1,68 +1,90 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
-import { Router } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-product',
-  imports: [ReactiveFormsModule, BrowserModule, CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './create-product.component.html',
   styleUrl: './create-product.component.css'
 })
 export class CreateProductComponent implements OnInit{
-  base64Image: string = '';
-  addProductForm!: FormGroup;
+  newProduct = {
+    product_name: '',
+    description: '',
+    product_color: '',
+    price: 0,
+    discount: 0,
+    quantity: 0,
+    category_id: '',
+    is_actived: true,
+    imageData: ''
+  };
+  
+  categories: any[] = [];
 
-  constructor(
-    private fb: FormBuilder,
-    private apiService: ApiService,
-    private router: Router
-  ) {}
+  constructor(private apiService: ApiService, private router: Router,private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.addProductForm = this.fb.group({
-      product_name: ['', Validators.required],
-      description: ['', Validators.required],
-      product_color: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(0)]],
-      discount: ['', [Validators.min(0)]],
-      quantity: ['', [Validators.required, Validators.min(0)]],
-      category_id: ['', Validators.required],
-      is_actived: [false],
-      imageData: ['']
+    this.apiService.getAllCategories().subscribe(categories => {
+      this.categories = categories;
+      this.cdr.detectChanges(); 
+    }, error => {
+      console.error('Có lỗi khi lấy danh mục:', error);
     });
   }
-
-  onImageChange(event: any): void {
+  
+  onImageSelected(event: any): void {
     const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      this.base64Image = reader.result as string;
-      this.addProductForm.patchValue({
-        imageData: this.base64Image
-      });
-    };
-
     if (file) {
-      reader.readAsDataURL(file);
+      this.convertToBase64(file);
     }
   }
 
+  private convertToBase64(file: File): void {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.newProduct.imageData = reader.result as string;
+    };
+  }
+  
   onSubmit(): void {
-    if (this.addProductForm.valid) {
-      const productData = this.addProductForm.value;
-      this.apiService.createProduct(productData).subscribe(
-        (response) => {
-          alert('Sản phẩm đã được thêm thành công!');
-          this.router.navigate(['/products']);
-        },
-        (error) => {
-          console.error('Lỗi khi thêm sản phẩm:', error);
-        }
-      );
+    if (this.newProduct.imageData) {
+      this.apiService.createProduct(this.newProduct).subscribe(response => {
+        console.log('Sản phẩm đã được thêm thành công', response);
+  
+        Swal.fire({
+          icon: 'success',
+          title: 'Sản phẩm đã được thêm thành công!',
+          text: 'Nhấn nút đóng để trở về trang sản phẩm.',
+          showConfirmButton: true,
+          confirmButtonText: 'Đóng',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/products']);
+          }
+        });
+      }, error => {
+        console.error('Có lỗi khi thêm sản phẩm:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Có lỗi xảy ra!',
+          text: 'Không thể thêm sản phẩm, vui lòng thử lại.',
+          confirmButtonText: 'Đóng'
+        });
+      });
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Chưa chọn ảnh!',
+        text: 'Vui lòng chọn ảnh sản phẩm.',
+        confirmButtonText: 'Đóng'
+      });
     }
   }
+  
 }
