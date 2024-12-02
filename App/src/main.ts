@@ -10,6 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { ProfileComponent } from './app/user/profile/profile.component';
 import { ChangepasswordComponent } from './app/user/changepassword/changepassword.component';
 import { AboutComponent } from './app/about/about.component';
+import { ShopComponent } from './app/page/shop/shop.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'verify-otp', component: VerifyOtpComponent, data: { breadcrumb: 'Xác thực' } },
     { path: 'profile', component: ProfileComponent, data: { breadcrumb: 'Trang cá nhân' } },
     { path: 'changepass', component: ChangepasswordComponent, data: { breadcrumb: 'Quên mật khẩu' } },
+    { path: 'shop', component: ShopComponent, data: { breadcrumb: 'Sản phẩm' } },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

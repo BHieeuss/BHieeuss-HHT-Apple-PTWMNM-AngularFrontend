@@ -8,7 +8,7 @@ import { BehaviorSubject, catchError, Observable } from 'rxjs';
 })
 export class ApiService {
 
-  private baseUrl = 'http://localhost:8000';
+  private apiUrl = 'http://localhost:8000';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
@@ -22,31 +22,34 @@ export class ApiService {
 
   //Lấy danh sách danh mục
   getCategories(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/category/get-all`);
+    return this.http.get<any[]>(`${this.apiUrl}/category/get-all`);
+  }
+ //Lấy danh sách sản phẩm
+  getProducts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/product/get-all`);
   }
 
   //Đăng ký
     // Gửi yêu cầu đăng ký
     register(userData: { email: string; password: string; imageData: string }): Observable<any> {
-      return this.http.post(`${this.baseUrl}/user/register`, userData);
+      return this.http.post(`${this.apiUrl}/user/register`, userData);
     }
   
     // Xác thực OTP
     verifyOtp(otpData: { email: string; otp: string }): Observable<any> {
-      return this.http.put(`${this.baseUrl}/user/vertify-otp`, otpData);
+      return this.http.put(`${this.apiUrl}/user/vertify-otp`, otpData);
     }
     
 
      // Đăng nhập
      login(loginData: { email: string; password: string }) {
-      return this.http.post(`${this.baseUrl}/user/login`, loginData).pipe(
+      return this.http.post(`${this.apiUrl}/user/login`, loginData).pipe(
         catchError((err) => {
           throw err;
         })
       );
     }
     
-
       // Xử lý đăng nhập thành công
       loginSuccess(email: string) {
         if (isPlatformBrowser(this.platformId)) {
@@ -57,12 +60,12 @@ export class ApiService {
       }
       // Get thông tin tài khoản
       getUserByEmail(email: string): Observable<any> {
-        return this.http.get(`${this.baseUrl}/user/get-by-email?email=${email}`);
+        return this.http.get(`${this.apiUrl}/user/get-by-email?email=${email}`);
       }
       
       // Cập nhật thông tin tài khoản
       updateProfile(userId: number, userData: any): Observable<any> {
-        return this.http.put(`${this.baseUrl}/user/update-profile/${userId}`, userData);
+        return this.http.put(`${this.apiUrl}/user/update-profile/${userId}`, userData);
       }
     
   }
