@@ -74,17 +74,17 @@
 
               <!-- Giỏ hàng -->
               <ng-container *ngIf="isLoggedIn()">
-                <!-- Giỏ hàng -->
-                <a class="btn d-flex align-items-center" routerLink="/cart">
-                  <i class="bi bi-cart me-1"></i>{{ cartCount }}
+                <a class="btn d-flex align-items-center" routerLink="/cart"
+                  style="color: #000; background-color: transparent; border: none; text-decoration: none;">
+                  <i class="bi bi-cart me-1" style="color: #000;"></i>{{ cartCount }}
                 </a>
               </ng-container>
+              
             </li>
           </ul>
           <!-- Tài khoản -->
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-
               <ng-container *ngIf="isLoggedIn(); else loginMenu">
                 <!-- Dropdown khi đã đăng nhập -->
                 <a class="btn btn-primary dropdown-toggle d-flex align-items-center gap-2 px-3 py-2 rounded-pill"

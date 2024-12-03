@@ -1,0 +1,17 @@
+/* Cải thiện căn chỉnh form */
+.container {
+    max-width: 600px;
+  }
+  
+  h3 {
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .btn-block {
+    margin-top: 15px;
+  }
+  

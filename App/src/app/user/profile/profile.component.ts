@@ -2,10 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import Swal from 'sweetalert2';
+import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -19,16 +22,22 @@ import Swal from 'sweetalert2';
     content: 'string',
     fileName: ''
   };
+
+  addresses: any[] = [];
+
   selectedFile: File | null = null;
 
-  addresses = [
-    { label: 'Nhà', address: '123 đường ABC, Hải Phòng' },
-    { label: 'Công ty', address: '456 đường XYZ, Hải Phòng' }
-  ];
 
-  constructor(private cdr: ChangeDetectorRef, private apiService: ApiService) { }
+
+  constructor(private cdr: ChangeDetectorRef, private apiService: ApiService, private http: HttpClient) {}
 
   ngOnInit(): void {
+
+    this.apiService.getAddresses().subscribe(response => {
+      if (response.status) {
+        this.addresses = response.data;
+      }
+    });
     const email = localStorage.getItem('email');
     
     if (email) {
@@ -57,7 +66,6 @@ import Swal from 'sweetalert2';
       }
     });
   }
-//asd
   openUpdateProfileDialog(): void {
     Swal.fire({
       title: 'Cập nhật tài khoản',
@@ -185,4 +193,6 @@ import Swal from 'sweetalert2';
       }
     });
   }
+
+
 }

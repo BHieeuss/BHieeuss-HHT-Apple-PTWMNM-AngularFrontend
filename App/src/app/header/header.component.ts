@@ -38,7 +38,11 @@ export class HeaderComponent implements OnInit {
             this.userInfo = response[0]; 
             console.log('User Info:', this.userInfo);
             console.log('User Roles:', this.userInfo.roles);
-
+            // Lưu user_id vào localStorage
+          if (this.userInfo && this.userInfo.user_id) {
+            localStorage.setItem('user_id', this.userInfo.user_id);
+            console.log('User ID saved to localStorage:', this.userInfo.user_id);
+          }
             // Kiểm tra nếu vai trò là 1, thì lưu vào cookie
             if (this.userInfo.roles === 1) {
               document.cookie = "userRole=1; path=/; SameSite=Lax;";
@@ -71,6 +75,7 @@ export class HeaderComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('email'); 
       localStorage.removeItem('userInfo');
+      localStorage.removeItem('user_id');
     this.deleteCookie('userRole');
     }
     alert('Bạn đã đăng xuất.');

@@ -9,6 +9,7 @@ import { BehaviorSubject, catchError, Observable } from 'rxjs';
 export class ApiService {
 
   private apiUrl = 'http://localhost:8000';
+  private provincesUrl = 'https://provinces.open-api.vn/api/?depth=2';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
@@ -24,9 +25,15 @@ export class ApiService {
   getCategories(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/category/get-all`);
   }
+  
  //Lấy danh sách sản phẩm
   getProducts(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/product/get-all`);
+  }
+
+  // Lấy chi tiết sản phẩm theo ID
+  getProductById(productId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/product/get-by-id/${productId}`);
   }
 
   //Đăng ký
@@ -68,4 +75,17 @@ export class ApiService {
         return this.http.put(`${this.apiUrl}/user/update-profile/${userId}`, userData);
       }
     
+       // Lấy danh sách địa chỉ
+      getProvinces(): Observable<any> {
+        return this.http.get<any>(this.provincesUrl);
+      }
+
+      // Thêm địa chỉ vào database
+      addUserAddress(userAddress: any): Observable<any> {
+        return this.http.post<any>(this.apiUrl, userAddress);
+      }
+      // Get địa chỉ
+      getAddresses(): Observable<any> {
+        return this.http.get<any>(this.apiUrl);
+      }
   }

@@ -17,7 +17,7 @@
                         diện</button>
                     <a href="javascript:void(0)" class="btn btn-info btn-block mt-2">Xem đơn
                         hàng</a>
-                    <a href="javascript:void(0)" class="btn btn-success btn-block mt-2">Thêm địa
+                    <a class="btn btn-success btn-block mt-2" routerLink="/profile/add-address">Thêm địa
                         chỉ</a>
                 </div>
             </div>
@@ -47,12 +47,14 @@
                 </div>
                 <div class="card-body">
                     <div *ngFor="let address of addresses">
-                        <p><strong>{{ address.label }}:</strong> {{ address.address }}</p>
+                        <p><strong>{{ address.full_name }}:</strong> {{ address.address }}</p>
+                        <p>{{ address.ward }}, {{ address.district }}, {{ address.province }}</p>
+                        <p><strong>Tel:</strong> {{ address.tel }}</p>
                         <button class="btn btn-warning btn-sm">Chỉnh sửa</button>
-                        <button class="btn btn-danger btn-sm ml-2">Xóa</button>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

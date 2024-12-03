@@ -11,6 +11,8 @@ import { ProfileComponent } from './app/user/profile/profile.component';
 import { ChangepasswordComponent } from './app/user/changepassword/changepassword.component';
 import { AboutComponent } from './app/about/about.component';
 import { ShopComponent } from './app/page/shop/shop.component';
+import { ShopSingleComponent } from './app/page/shop-single/shop-single.component';
+import { AddAddressComponent } from './app/user/add-address/add-address.component';
 
 
 const routes: Routes = [
@@ -21,8 +23,10 @@ const routes: Routes = [
     { path: 'about', component: AboutComponent, data: { breadcrumb: 'Về chúng tôi' } },
     { path: 'verify-otp', component: VerifyOtpComponent, data: { breadcrumb: 'Xác thực' } },
     { path: 'profile', component: ProfileComponent, data: { breadcrumb: 'Trang cá nhân' } },
+    { path: 'profile/add-address', component: AddAddressComponent, data: { breadcrumb: 'Thêm địa chỉ' } },
     { path: 'changepass', component: ChangepasswordComponent, data: { breadcrumb: 'Quên mật khẩu' } },
     { path: 'shop', component: ShopComponent, data: { breadcrumb: 'Sản phẩm' } },
+    { path: 'product/:id', component: ShopSingleComponent, data: { breadcrumb: 'Sản phẩm' } },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
