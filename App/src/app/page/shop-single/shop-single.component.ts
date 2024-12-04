@@ -4,6 +4,7 @@ import { ApiService } from '../../api.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-shop-single',
@@ -15,7 +16,7 @@ export class ShopSingleComponent implements OnInit {
   product: any = {}; 
   quantity: number = 1;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) { }
+  constructor(private apiService: ApiService, private cartService: CartService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id'); 
@@ -35,27 +36,21 @@ export class ShopSingleComponent implements OnInit {
     });
   }
 
-  // addToCart(): void {
-  //   const cartItem = {
-  //     product_id: this.product.product_id,
-  //     quantity: this.quantity
-  //   };
+  addToCart(): void {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
-  //   this.apiService.addToCart(cartItem).subscribe({
-  //     next: (response) => {
-  //       Swal.fire({
-  //         icon: 'success',
-  //         title: 'Thêm vào giỏ hàng thành công!',
-  //         text: 'Sản phẩm đã được thêm vào giỏ hàng.',
-  //       });
-  //     },
-  //     error: (err) => {
-  //       Swal.fire({
-  //         icon: 'error',
-  //         title: 'Lỗi!',
-  //         text: 'Không thể thêm sản phẩm vào giỏ hàng.',
-  //       });
-  //     }
-  //   });
-  // }
+    const existingProduct = cart.find((item: any) => item.product_id === this.product.product_id);
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      cart.push({
+        product_id: this.product.product_id,
+        quantity: 1
+      });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    alert('Sản phẩm đã được thêm vào giỏ hàng!');
+  } 
 }

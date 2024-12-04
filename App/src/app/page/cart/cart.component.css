@@ -1,0 +1,50 @@
+/* CSS cho trang thanh toán */
+.container {
+    max-width: 1200px;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table img {
+    max-width: 100px;
+    object-fit: cover;
+}
+
+.total {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.total h3 {
+    font-size: 1.5rem;
+}
+
+.btn-lg {
+    height: 60px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.thead-dark th {
+    background-color: #343a40;
+    color: white;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+

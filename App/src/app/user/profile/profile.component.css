@@ -37,4 +37,36 @@
   button {
     margin-top: 10px;
   }
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-header {
+    background-color: #f8f9fa;
+  }
+  
+  .card-body .d-flex {
+    border-bottom: 1px solid #ddd; 
+    padding-bottom: 10px;
+  }
+  
+  .card-body .d-flex:last-child {
+    border-bottom: none; 
+  }
+  
+  .card-body p {
+    margin: 0 0 5px 0; 
+  }
+  
+  button.btn-warning {
+    background-color: #ffc107;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  button.btn-warning:hover {
+    background-color: #e0a800;
+    transition: background-color 0.3s ease;
+  }
   

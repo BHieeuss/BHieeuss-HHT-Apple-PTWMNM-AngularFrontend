@@ -32,14 +32,9 @@ import { FormsModule } from '@angular/forms';
   constructor(private cdr: ChangeDetectorRef, private apiService: ApiService, private http: HttpClient) {}
 
   ngOnInit(): void {
+    this.getAddresses();
 
-    this.apiService.getAddresses().subscribe(response => {
-      if (response.status) {
-        this.addresses = response.data;
-      }
-    });
     const email = localStorage.getItem('email');
-    
     if (email) {
       this.getUserInfo(email);
     } else {
@@ -194,5 +189,19 @@ import { FormsModule } from '@angular/forms';
     });
   }
 
+getAddresses(): void {
+    this.apiService.getAddresses().subscribe(
+      (response: any) => {
+        if (response.status) {
+          this.addresses = response.data;
+        } else {
+          console.error('Failed to fetch addresses');
+        }
+      },
+      (error) => {
+        console.error('Error fetching addresses', error);
+      }
+    );
+  }
 
 }

@@ -21,6 +21,15 @@ export class ApiService {
       }
   }
 
+getAddresses(): Observable<any> {
+    const userId = localStorage.getItem('user_id');
+    if (userId) {
+      return this.http.get(`${this.apiUrl}/useraddress/get-address-by-customer-id/${userId}`);
+    } else {
+      throw new Error('User ID not found in localStorage');
+    }
+  }
+
   //Lấy danh sách danh mục
   getCategories(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/category/get-all`);
@@ -75,17 +84,5 @@ export class ApiService {
         return this.http.put(`${this.apiUrl}/user/update-profile/${userId}`, userData);
       }
     
-       // Lấy danh sách địa chỉ
-      getProvinces(): Observable<any> {
-        return this.http.get<any>(this.provincesUrl);
-      }
-
-      // Thêm địa chỉ vào database
-      addUserAddress(userAddress: any): Observable<any> {
-        return this.http.post<any>(this.apiUrl, userAddress);
-      }
-      // Get địa chỉ
-      getAddresses(): Observable<any> {
-        return this.http.get<any>(this.apiUrl);
-      }
+      
   }

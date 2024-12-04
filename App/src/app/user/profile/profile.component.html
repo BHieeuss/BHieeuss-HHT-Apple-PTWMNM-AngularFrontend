@@ -35,26 +35,37 @@
                     <p><strong>Họ tên:</strong> {{ user.username || 'Chưa có thông tin' }}</p>
                     <p><strong>Email:</strong> {{ user.email || 'Chưa có thông tin' }}</p>
                     <p><strong>Số điện thoại:</strong> {{ user.phone_number || 'Chưa có thông tin' }}</p>
-                    <p><strong>Địa chỉ:</strong> {{ user.address || 'Chưa có địa chỉ' }}</p>
+                    <p><strong>Địa chỉ:</strong> {{ addresses[0]?.address || 'Chưa có địa chỉ' }} <strong>(Mặc
+                            định)</strong></p>
+
 
                 </div>
             </div>
 
-            <!-- Address Management -->
+
             <div class="card mt-4">
                 <div class="card-header">
                     <h5>Quản lý địa chỉ</h5>
                 </div>
                 <div class="card-body">
-                    <div *ngFor="let address of addresses">
-                        <p><strong>{{ address.full_name }}:</strong> {{ address.address }}</p>
-                        <p>{{ address.ward }}, {{ address.district }}, {{ address.province }}</p>
-                        <p><strong>Tel:</strong> {{ address.tel }}</p>
+                    <div *ngIf="addresses.length === 0">
+                        <p class="text-center">Chưa có địa chỉ</p>
+                    </div>
+                    <div *ngFor="let address of addresses"
+                        class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <p><strong>{{ address.full_name }}:</strong> {{ address.address }}</p>
+                            <p>{{ address.ward }}, {{ address.district }}, {{ address.province }}</p>
+                            <p><strong>Số điện thoại:</strong> {{ address.tel }}</p>
+                        </div>
                         <button class="btn btn-warning btn-sm">Chỉnh sửa</button>
                     </div>
                 </div>
             </div>
 
+
+
         </div>
     </div>
 </div>
+<br>

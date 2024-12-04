@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
+      this.updateCartCount();
       this.email = localStorage.getItem('email');
 
       if (this.email) {
@@ -58,7 +59,6 @@ export class HeaderComponent implements OnInit {
       }
     }
 
-    // Lấy danh mục từ API
     this.apiService.getCategories().subscribe((data) => {
       this.categories = data;
     });
@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit {
       localStorage.removeItem('userInfo');
       localStorage.removeItem('user_id');
     this.deleteCookie('userRole');
-    }
+    }   
     alert('Bạn đã đăng xuất.');
     this.router.navigate(['/login']); 
   }
@@ -93,8 +93,9 @@ export class HeaderComponent implements OnInit {
     this.toggleSearch(); 
   }
 
-  updateCartCount() {
-    this.cartCount = 5;
+  updateCartCount(): void {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    this.cartCount = cart.reduce((total: number, item: any) => total + item.quantity, 0);
   }
 
   isAdmin(): boolean {

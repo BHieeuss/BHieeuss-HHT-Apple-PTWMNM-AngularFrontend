@@ -1,0 +1,57 @@
+<div *ngIf="products.length > 0" class="container mt-5">
+    <h2 class="text-center mb-4" style="color: black;">THANH TOÁN</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Giảm giá</th>
+                <th>Số lượng</th>
+                <th>Tổng</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products; let i = index">
+                <td><img [src]=" 'https://localhost:1009/' +product.image_url" alt="{{ product.product_name }}"
+                        class="img-fluid" style="max-width: 100px;"></td>
+                <td>{{ product.product_name }}</td>
+                <td>{{ product.price | currency }}</td>
+                <td>{{ product.discount }}</td>
+                <td>{{ cartItems[i]?.quantity }}</td>
+                <td>{{ getProductTotal(product, i) | currency }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group mt-4">
+        <label for="addressSelect" class="font-weight-bold">Chọn địa chỉ giao hàng:</label>
+
+        <!-- Kiểm tra tồn tại của 'addresses' và sau đó kiểm tra length -->
+        <div *ngIf="addresses && addresses.length > 0">
+            <select class="form-control " id="addressSelect" (change)="selectAddress($event.target)">
+                <option *ngFor="let address of addresses" [value]="address.address_id">
+                    {{ address.street }}, {{ address.city }}, {{ address.state }}
+                </option>
+            </select>
+
+        </div>
+
+        <div *ngIf="addresses && addresses.length === 0">
+            <p>Không có địa chỉ nào để chọn.</p>
+        </div>
+    </div>
+
+
+
+
+    <div class="total d-flex justify-content-between align-items-center">
+        <h3 class="text-black">Tổng tiền: <strong>{{ totalAmount | currency }}</strong></h3>
+        <button class="btn btn-success btn-lg">Thanh toán</button>
+    </div>
+</div>
+
+<div *ngIf="products.length === 0" class="container mt-5 text-center">
+    <p>Giỏ hàng của bạn hiện tại trống.</p>
+</div>
+<br>
