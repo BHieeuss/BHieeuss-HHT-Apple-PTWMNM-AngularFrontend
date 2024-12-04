@@ -60,6 +60,24 @@ export class CartComponent implements OnInit {
     }
   }
 
+  removeProduct(index: number): void {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    cart.splice(index, 1); // Xóa sản phẩm tại vị trí index
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.products = cart.map((item: any) => item.product);
+    this.cartItems = cart;
+    this.calculateTotalAmount();
+    window.location.reload();
+  }
+
+  clearCart(): void {
+    localStorage.removeItem('cart');
+    this.products = [];
+    this.cartItems = [];
+    this.totalAmount = 0;
+    window.location.reload();
+  }
+
   calculateTotalAmount(): void {
     this.totalAmount = 0;
     this.products.forEach((product: any, index: number) => {

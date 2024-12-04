@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../api.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -28,10 +29,18 @@ export class LoginComponent {
           localStorage.setItem('userInfo', JSON.stringify(response.userInfo));
   
           this.apiService.loginSuccess(this.email);
-          alert('Đăng nhập thành công!');
-          this.router.navigate(['/home']);
-        }
-      },
+          this.apiService.loginSuccess(this.email);
+        Swal.fire({
+          icon: 'success',
+          title: 'Đăng nhập thành công!',
+          text: 'Sản phẩm đã được thêm vào giỏ hàng.',
+        }).then(() => {
+          this.router.navigate(['/home']).then(() => {
+            window.location.reload();
+          });
+        });
+      }
+    },
       error: (err) => {
         if (err.status === 401) {
           this.errorMessage = 'Mật khẩu không đúng. Vui lòng thử lại.';

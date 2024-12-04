@@ -9,6 +9,7 @@
                 <th>Giảm giá</th>
                 <th>Số lượng</th>
                 <th>Tổng</th>
+                <th>Hành động</th> <!-- Cột cho hành động xóa -->
             </tr>
         </thead>
         <tbody>
@@ -20,8 +21,18 @@
                 <td>{{ product.discount }}</td>
                 <td>{{ cartItems[i]?.quantity }}</td>
                 <td>{{ getProductTotal(product, i) | currency }}</td>
+                <td>
+                    <!-- Nút xóa sản phẩm -->
+                    <button class="btn btn-danger btn-sm" (click)="removeProduct(i)">Xóa</button>
+                </td>
             </tr>
         </tbody>
+        <hr>
+        <!-- Nút xóa giỏ hàng -->
+        <div class="mt-4 text-left">
+            <button class="btn btn-warning" (click)="clearCart()">Xóa giỏ hàng</button>
+        </div>
+        <br>
     </table>
 
     <div class="form-group mt-4">
@@ -29,12 +40,11 @@
 
         <!-- Kiểm tra tồn tại của 'addresses' và sau đó kiểm tra length -->
         <div *ngIf="addresses && addresses.length > 0">
-            <select class="form-control " id="addressSelect" (change)="selectAddress($event.target)">
+            <select class="form-control" id="addressSelect" (change)="selectAddress($event.target)">
                 <option *ngFor="let address of addresses" [value]="address.address_id">
                     {{ address.street }}, {{ address.city }}, {{ address.state }}
                 </option>
             </select>
-
         </div>
 
         <div *ngIf="addresses && addresses.length === 0">
@@ -42,16 +52,15 @@
         </div>
     </div>
 
-
-
-
     <div class="total d-flex justify-content-between align-items-center">
         <h3 class="text-black">Tổng tiền: <strong>{{ totalAmount | currency }}</strong></h3>
         <button class="btn btn-success btn-lg">Thanh toán</button>
     </div>
 </div>
 
+<!-- Hiển thị khi giỏ hàng trống -->
 <div *ngIf="products.length === 0" class="container mt-5 text-center">
-    <p>Giỏ hàng của bạn hiện tại trống.</p>
+    <div class="alert alert-warning" role="alert">
+        Giỏ hàng của bạn hiện tại trống.
+    </div>
 </div>
-<br>

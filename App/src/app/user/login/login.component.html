@@ -11,18 +11,18 @@
 
     <!-- Form đăng nhập bên phải -->
     <div class="col-md-6 p-5 bg-white">
-      <h2 class="text-center mb-4 fw-bold">Chào mừng quay trở lại!</h2>
+      <h2 class="text-center mb-4 fw-bold" style="color: black;">Chào mừng quay trở lại!</h2>
       <form (ngSubmit)="onLogin()">
         <!-- Email -->
         <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
+          <label for="email" class="form-label" style="color: black;">Email</label>
           <input type="email" id="email" class="form-control form-control-lg" [(ngModel)]="email" name="email"
             required />
         </div>
 
         <!-- Password -->
         <div class="mb-3">
-          <label for="password" class="form-label">Mật khẩu</label>
+          <label for="password" class="form-label" style="color: black;">Mật khẩu</label>
           <input type="password" id="password" class="form-control form-control-lg" [(ngModel)]="password"
             name="password" required />
         </div>

@@ -3,6 +3,7 @@ import { ApiService } from '../../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-verify-otp',
@@ -30,8 +31,13 @@ export class VerifyOtpComponent {
     this.apiService.verifyOtp(otpData).subscribe({
       next: (response) => {
         console.log('Xác thực OTP thành công:', response);
-        // Chuyển hướng sau khi xác thực
-        this.router.navigate(['/login']);
+        Swal.fire({
+          icon: 'success',
+          title: 'Xác thực OTP thành công',
+          text: 'Hãy đăng nhập vào Website',
+        }).then(() => {
+          this.router.navigate(['/login']);
+        });
       },
       error: (err) => {
         console.error('Lỗi khi xác thực OTP:', err);

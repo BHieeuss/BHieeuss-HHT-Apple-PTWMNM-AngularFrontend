@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../cart.service';
@@ -16,7 +16,7 @@ export class ShopSingleComponent implements OnInit {
   product: any = {}; 
   quantity: number = 1;
 
-  constructor(private apiService: ApiService, private cartService: CartService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private apiService: ApiService, private cartService: CartService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id'); 
@@ -38,7 +38,7 @@ export class ShopSingleComponent implements OnInit {
 
   addToCart(): void {
     let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-
+  
     const existingProduct = cart.find((item: any) => item.product_id === this.product.product_id);
     if (existingProduct) {
       existingProduct.quantity += 1;
@@ -48,9 +48,24 @@ export class ShopSingleComponent implements OnInit {
         quantity: 1
       });
     }
-
+  
     localStorage.setItem('cart', JSON.stringify(cart));
-
-    alert('Sản phẩm đã được thêm vào giỏ hàng!');
-  } 
+  
+    Swal.fire({
+      icon: 'success',
+      title: 'Sản phẩm đã được thêm vào giỏ hàng!',
+      text: 'Bạn có thể tiếp tục mua sắm hoặc thanh toán.',
+      showCancelButton: true,
+      confirmButtonText: 'Thanh toán',
+      cancelButtonText: 'Tiếp tục mua sắm',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/checkout']);
+      } else if (result.isDismissed) {
+        this.router.navigate(['/shop']);
+      }
+    });
+  }
 }

@@ -5,6 +5,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -78,9 +79,19 @@ export class HeaderComponent implements OnInit {
       localStorage.removeItem('user_id');
     this.deleteCookie('userRole');
     }   
-    alert('Bạn đã đăng xuất.');
-    this.router.navigate(['/login']); 
-  }
+  Swal.fire({
+    icon: 'success',
+    title: 'Đăng xuất thành công!',
+    text: 'Bạn đã đăng xuất khỏi tài khoản.',
+    confirmButtonText: 'Đến trang đăng nhập',
+    confirmButtonColor: '#3085d6',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.router.navigate(['/login']);
+    }
+  });
+}
+
   private deleteCookie(name: string): void {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax;`;
   }

@@ -4,10 +4,12 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../api.service';
 import { isPlatformBrowser } from '@angular/common';  // Thêm import isPlatformBrowser
+import Swal from 'sweetalert2';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-add-address',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './add-address.component.html',
   styleUrl: './add-address.component.css'
 })
@@ -27,7 +29,7 @@ export class AddAddressComponent implements OnInit {
   email: string | null = '';
   userId: number | null = null;
 
-  constructor(private http: HttpClient, private apiService: ApiService, @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(private router: Router, private http: HttpClient, private apiService: ApiService, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
     this.fetchProvinces();
@@ -135,7 +137,13 @@ export class AddAddressComponent implements OnInit {
     this.http.post('http://localhost:8000/useraddress/create', addressData)
       .subscribe(
         response => {
-          alert('Địa chỉ mới đã được thêm thành công!');
+          Swal.fire({
+            icon: 'success',
+            title: 'Thành công',
+            text: 'Thêm địa chỉ thành công.',
+          }).then(() => {
+            this.router.navigate(['/profile']);
+          });
         },
         error => {
           console.error('Error adding address:', error);
