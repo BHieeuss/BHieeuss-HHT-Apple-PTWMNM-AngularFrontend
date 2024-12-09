@@ -7,15 +7,31 @@
             </div>
             <div class="row mb-5">
                 <div *ngFor="let product of products" class="col-lg-6 col-md-6 item-entry mb-4">
-                    <a [routerLink]="['/product', product.product_id]" class="product-item md-height bg-gray d-block">
-                        <img [src]="'https://localhost:1009/' + product.image_url" alt="Image" class="img-fluid">
+                    <a [routerLink]="['/product', product.product_id]" class="product-item md-height d-block">
+                        <img [src]="'https://localhost:1009/' + product.image_url" alt="Image"
+                            class="img-fluid product-image">
                     </a>
-                    <h2 class="item-title">{{ product.product_name }}</h2>
-                    <strong class="item-price">
-                        <del *ngIf="product.discount">{{ product.price | currency }}</del>
-                        {{ (product.price - product.discount) | currency }}
-                    </strong>
+
+                    <hr>
+
+                    <div class=" text-center">
+                        <h2 class="item-title" style="color: black;">{{ product.product_name }}</h2>
+                        <strong class="item-price">
+                            <del *ngIf="product.discount">{{ product.price | number }} VNĐ</del>
+                            {{ (product.price - product.discount) | number }} VNĐ
+                        </strong>
+                    </div>
+
+                    <div class="star-rating left-0 mt-2 ml-2">
+                        <i class="fas fa-star" style="color: gold;"></i>
+                        <i class="fas fa-star" style="color: gold;"></i>
+                        <i class="fas fa-star" style="color: gold;"></i>
+                        <i class="fas fa-star" style="color: gold;"></i>
+                        <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                    </div>
+                    <br>
                 </div>
+
             </div>
 
         </div>
@@ -43,38 +59,38 @@
                 </div>
 
                 <div class="mb-4">
-                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
+                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Kích cỡ</h3>
                     <label for="s_sm" class="d-flex">
-                        <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small
+                        <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Nhỏ
                             (2,319)</span>
                     </label>
                     <label for="s_md" class="d-flex">
-                        <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium
+                        <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Vừa
                             (1,282)</span>
                     </label>
                     <label for="s_lg" class="d-flex">
-                        <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large
+                        <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Lớn
                             (1,392)</span>
                     </label>
                 </div>
 
                 <div class="mb-4">
-                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
+                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Màu sắc</h3>
                     <a href="#" class="d-flex color-item align-items-center">
                         <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span
-                            class="text-black">Red (2,429)</span>
+                            class="text-black">Đỏ (2,429)</span>
                     </a>
                     <a href="#" class="d-flex color-item align-items-center">
                         <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span
-                            class="text-black">Green (2,298)</span>
+                            class="text-black">Xanh lá (2,298)</span>
                     </a>
                     <a href="#" class="d-flex color-item align-items-center">
                         <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span
-                            class="text-black">Blue (1,075)</span>
+                            class="text-black">Xanh dương (1,075)</span>
                     </a>
                     <a href="#" class="d-flex color-item align-items-center">
                         <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span
-                            class="text-black">Purple (1,075)</span>
+                            class="text-black">Xanh đậm (1,075)</span>
                     </a>
                 </div>
 

@@ -33,9 +33,11 @@ h2.text-black {
 .product-item img {
     width: 100%;
     height: 100%;
+    top: 4%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
+
 
 .item-title {
     font-size: 1rem;
@@ -52,7 +54,7 @@ h2.text-black {
 
 .item-price {
     font-size: 1rem;
-    color: #e74c3c;
+    color: #1d24f9;
     margin-top: 10px;
 }
 
@@ -106,5 +108,5 @@ h3.text-black {
     .item-entry {
         margin-bottom: 15px;
     }
-    
+  
 }
