@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, catchError, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,26 @@ getAddresses(): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/product/get-all`);
   }
 
+  // Lấy 6 sản phẩm ngẫu nhiên
+  getRandomProducts(): Observable<any[]> {
+    return this.getProducts().pipe(
+      map(products => {
+        // Trộn danh sách sản phẩm
+        const shuffledProducts = this.shuffleArray(products);
+        // Chọn 6 sản phẩm đầu tiên
+        return shuffledProducts.slice(0, 6);
+      })
+    );
+  }
+
+  // Hàm trộn mảng ngẫu nhiên
+  private shuffleArray(array: any[]): any[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];  // Hoán đổi
+    }
+    return array;
+  }
   // Lấy chi tiết sản phẩm theo ID
   getProductById(productId: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/product/get-by-id/${productId}`);
@@ -84,5 +104,18 @@ getAddresses(): Observable<any> {
         return this.http.put(`${this.apiUrl}/user/update-profile/${userId}`, userData);
       }
     
+      searchProductsByName(productName: string): Observable<any> {
+        return this.http.get<any>(`http://localhost:8000/product/get-by-name`, {
+          params: { product_name: productName }
+        });
+      }   
       
+       // Tạo đơn hàng mới
+      createOrder(orderData: any): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/order/create`, orderData);
+      }
+
+      getCoupons(): Observable<any> {
+        return this.http.get('http://localhost:8000/coupon/get-all');
+      }
   }

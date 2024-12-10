@@ -24,3 +24,7 @@
     max-width: 300px;
     position: absolute;
 }
+.product-item.md-height {
+    height: 309px;
+    padding: 40px;
+}

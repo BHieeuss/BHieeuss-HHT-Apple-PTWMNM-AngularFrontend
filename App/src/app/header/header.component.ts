@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   userInfo: any = null;
   categories: any[] = [];
 
+  
   constructor(
     private modalService: NgbModal,
     private apiService: ApiService, 
@@ -99,9 +100,14 @@ export class HeaderComponent implements OnInit {
     this.searchActive = !this.searchActive;
   }
 
+  // Cập nhật phương thức tìm kiếm
   performSearch() {
-    console.log('Từ khóa tìm kiếm:', this.searchQuery);
-    this.toggleSearch(); 
+    if (this.searchQuery.trim()) {
+      console.log('Từ khóa tìm kiếm:', this.searchQuery);
+      // Chuyển hướng đến trang tìm kiếm và truyền từ khóa qua queryParams
+      this.router.navigate(['/search-results'], { queryParams: { query: this.searchQuery } });
+      this.toggleSearch();  // Tắt modal tìm kiếm sau khi tìm
+    }
   }
 
   updateCartCount(): void {

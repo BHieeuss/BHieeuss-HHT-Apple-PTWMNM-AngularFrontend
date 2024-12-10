@@ -9,7 +9,7 @@
                 <th>Giảm giá</th>
                 <th>Số lượng</th>
                 <th>Tổng</th>
-                <th>Hành động</th> <!-- Cột cho hành động xóa -->
+                <th>Hành động</th>
             </tr>
         </thead>
         <tbody>
@@ -17,18 +17,16 @@
                 <td><img [src]=" 'https://localhost:1009/' +product.image_url" alt="{{ product.product_name }}"
                         class="img-fluid" style="max-width: 100px;"></td>
                 <td>{{ product.product_name }}</td>
-                <td>{{ product.price | currency }}</td>
-                <td>{{ product.discount }}</td>
+                <td>{{ product.price | number }} VNĐ</td>
+                <td>{{ product.discount | number }} VNĐ</td>
                 <td>{{ cartItems[i]?.quantity }}</td>
                 <td>{{ getProductTotal(product, i) | currency }}</td>
                 <td>
-                    <!-- Nút xóa sản phẩm -->
                     <button class="btn btn-danger btn-sm" (click)="removeProduct(i)">Xóa</button>
                 </td>
             </tr>
         </tbody>
         <hr>
-        <!-- Nút xóa giỏ hàng -->
         <div class="mt-4 text-left">
             <button class="btn btn-warning" (click)="clearCart()">Xóa giỏ hàng</button>
         </div>
@@ -36,25 +34,48 @@
     </table>
 
     <div class="form-group mt-4">
-        <label for="addressSelect" class="font-weight-bold">Chọn địa chỉ giao hàng:</label>
 
-        <!-- Kiểm tra tồn tại của 'addresses' và sau đó kiểm tra length -->
-        <div *ngIf="addresses && addresses.length > 0">
-            <select class="form-control" id="addressSelect" (change)="selectAddress($event.target)">
-                <option *ngFor="let address of addresses" [value]="address.address_id">
-                    {{ address.street }}, {{ address.city }}, {{ address.state }}
-                </option>
-            </select>
+        <div *ngIf="addresses && addresses.length > 0" class="mt-4">
+            <div class="form-group">
+                <label for="addressSelect" class="font-weight-bold" style="color: black;">Chọn địa chỉ giao
+                    hàng:</label>
+                <select class="form-control" id="addressSelect" (change)="selectAddress($event.target)">
+                    <option value="" disabled selected>--- Chọn địa chỉ giao hàng ---</option>
+                    <option *ngFor="let address of addresses" [value]="address.user_address_id">
+                        {{ address.full_name }}, {{ address.tel }} - {{ address.address }}, {{ address.ward }}, {{
+                        address.district }}, {{ address.province }}
+                    </option>
+                </select>
+            </div>
         </div>
-
-        <div *ngIf="addresses && addresses.length === 0">
+        <div *ngIf="addresses && addresses.length === 0" class="alert alert-warning mt-4">
             <p>Không có địa chỉ nào để chọn.</p>
         </div>
-    </div>
 
-    <div class="total d-flex justify-content-between align-items-center">
-        <h3 class="text-black">Tổng tiền: <strong>{{ totalAmount | currency }}</strong></h3>
-        <button class="btn btn-success btn-lg">Thanh toán</button>
+        <div class="mt-4">
+            <button class="btn btn-info" (click)="chooseCoupon()">Chọn mã giảm giá</button>
+        </div>
+
+        <div class="total d-flex justify-content-between align-items-center">
+            <ul class="total list-unstyled">
+                <li class="d-flex justify-content-between">
+                    <h5 class="text-black mb-0">
+                        Mã giảm giá:
+                        <strong class="text-success">{{ discountAmount | number }} VNĐ</strong>
+                    </h5>
+                </li>
+                <hr>
+                <li class="d-flex justify-content-between">
+                    <h5 class="text-black mb-0">
+                        Tổng tiền:
+                        <strong class="text-danger">{{ totalAmount | number }} VNĐ</strong>
+                    </h5>
+                </li>
+            </ul>
+            <!-- Thanh toán -->
+            <button class="btn btn-success btn-lg" (click)="createOrder()">Thanh toán</button>
+        </div>
+
     </div>
 </div>
 
@@ -64,3 +85,4 @@
         Giỏ hàng của bạn hiện tại trống.
     </div>
 </div>
+<hr>
