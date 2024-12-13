@@ -49,4 +49,8 @@ export class SearchResultsComponent implements OnInit{
     );
   }
 }
+
+scrollToTop(): void {
+  window.scrollTo(0, 0);
+}
 }

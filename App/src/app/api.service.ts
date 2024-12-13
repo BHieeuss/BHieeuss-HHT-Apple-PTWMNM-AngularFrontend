@@ -103,19 +103,27 @@ getAddresses(): Observable<any> {
       updateProfile(userId: number, userData: any): Observable<any> {
         return this.http.put(`${this.apiUrl}/user/update-profile/${userId}`, userData);
       }
-    
+
+      //Tìm kiếm sản phẩm
       searchProductsByName(productName: string): Observable<any> {
         return this.http.get<any>(`http://localhost:8000/product/get-by-name`, {
           params: { product_name: productName }
         });
       }   
       
-       // Tạo đơn hàng mới
+       //Tạo đơn hàng mới
       createOrder(orderData: any): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}/order/create`, orderData);
       }
 
+      //Lấy mã giảm giá
       getCoupons(): Observable<any> {
         return this.http.get('http://localhost:8000/coupon/get-all');
+      }
+
+      // Lấy sản phẩm theo danh mục
+      getProductsByCategory(categoryId: number): Observable<any[]> {
+        const url = `${this.apiUrl}/product/get-product-by-category/${categoryId}`;
+        return this.http.get<any[]>(url);  // Gửi request GET đến API và nhận mảng dữ liệu
       }
   }

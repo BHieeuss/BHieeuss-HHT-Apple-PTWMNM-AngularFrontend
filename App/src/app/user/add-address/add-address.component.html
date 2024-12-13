@@ -1,21 +1,21 @@
 <div class="container mt-4">
-    <h2>Thêm Địa Chỉ</h2>
+    <h2 style="color: black;">Thêm Địa Chỉ</h2>
 
     <!-- Form nhập thông tin địa chỉ -->
     <form (ngSubmit)="addAddress()">
         <div class="form-group">
-            <label for="fullName">Họ và Tên</label>
+            <label for="fullName" style="color: black;">Họ và Tên</label>
             <input type="text" id="fullName" class="form-control" [(ngModel)]="newAddress.fullName" name="fullName"
                 required>
         </div>
 
         <div class="form-group">
-            <label for="phone">Số điện thoại</label>
+            <label for="phone" style="color: black;">Số điện thoại</label>
             <input type="text" id="phone" class="form-control" [(ngModel)]="newAddress.phone" name="phone" required>
         </div>
 
         <div class="form-group">
-            <label for="address">Địa chỉ</label>
+            <label for="address" style="color: black;">Địa chỉ</label>
             <input type="text" id="address" class="form-control" [(ngModel)]="newAddress.address" name="address"
                 required>
         </div>

@@ -126,4 +126,7 @@ export class HeaderComponent implements OnInit {
     window.location.href = 'http://localhost:4201/#/home';
   }
 
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
 }

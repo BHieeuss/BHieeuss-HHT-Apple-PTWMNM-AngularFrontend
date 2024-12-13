@@ -42,7 +42,8 @@
                 <h3 class="mb-3 h6 text-uppercase text-black">Danh mục sản phẩm</h3>
                 <ul class="list-unstyled mb-0">
                     <li *ngFor="let category of categories" class="mb-2">
-                        <a href="#" class="d-flex text-dark text-decoration-none">
+                        <a [routerLink]="['/products', category.category_id]"
+                            class="d-flex text-dark text-decoration-none">
                             <span>{{ category.category_name }}</span>
                         </a>
                     </li>
@@ -51,12 +52,6 @@
 
 
             <div class="border p-4 rounded mb-4">
-                <div class="mb-4">
-                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Lọc theo giá</h3>
-                    <div id="slider-range" class="border-primary"></div>
-                    <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white"
-                        disabled="" />
-                </div>
 
                 <div class="mb-4">
                     <h3 class="mb-3 h6 text-uppercase text-black d-block">Kích cỡ</h3>

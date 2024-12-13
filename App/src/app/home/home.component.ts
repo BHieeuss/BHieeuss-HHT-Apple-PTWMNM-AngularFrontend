@@ -16,9 +16,12 @@ export class HomeComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    // Lấy 6 sản phẩm ngẫu nhiên từ API
     this.apiService.getRandomProducts().subscribe((data) => {
       this.products = data;
     });
+  }
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
   }
 }

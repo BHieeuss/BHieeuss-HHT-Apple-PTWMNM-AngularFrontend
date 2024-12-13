@@ -25,18 +25,18 @@
     <div class="row align-items-stretch">
       <div class="col-lg-8">
         <div class="product-item sm-height full-height bg-gray iphone">
-          <a href="#" class="product-category">Điện thoại</a>
+          <a routerLink="/products/8" class="product-category" (click)="scrollToTop()">Điện thoại</a>
           <img src="/assets/img/iphone.png" alt="Image" class="img-fluid" style="max-width: 150em;">
         </div>
       </div>
       <div class="col-lg-4">
         <div class="product-item sm-height bg-gray mb-4">
-          <a href="#" class="product-category">Phụ kiện</a>
+          <a routerLink="/products/9" class="product-category" (click)="scrollToTop()">Phụ kiện</a>
           <img src="/assets/img/airpods.png" alt="Image" class="img-fluid airpods">
         </div>
 
         <div class="product-item sm-height bg-gray">
-          <a href="#" class="product-category">Khác</a>
+          <a routerLink="/products/11" class="product-category" (click)="scrollToTop()">Khác</a>
           <img src="/assets/img/watch.png" alt="Image" class="img-fluid ">
         </div>
       </div>
@@ -55,7 +55,8 @@
     </div>
     <div class="row">
       <div *ngFor="let product of products" class="col-lg-2 col-md-4 col-sm-6 item-entry mb-4">
-        <a [routerLink]="['/product', product.product_id]" class="product-item md-height d-block">
+        <a [routerLink]="['/product', product.product_id]" (click)="scrollToTop()"
+          class="product-item md-height d-block">
           <img [src]="'https://localhost:1009/' + product.image_url" alt="Image" class="img-fluid product-image">
         </a>
         <h2 class="item-title" style="min-height: 50px; color:black ">

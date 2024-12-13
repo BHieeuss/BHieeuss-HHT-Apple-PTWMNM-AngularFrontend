@@ -8,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
   email: string = 'hhtapple@gmail.com';
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
 }

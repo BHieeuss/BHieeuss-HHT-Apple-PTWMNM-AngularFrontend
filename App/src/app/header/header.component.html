@@ -8,7 +8,7 @@
         <!-- Logo -->
         <div class="logo">
           <div class="site-logo">
-            <a routerLink="/home">HHT- <span style="color: rgb(185, 63, 63);">APPLE</span></a>
+            <a routerLink="/home">HHT- <span style="color: rgb(185, 63, 63);" (click)="scrollToTop()">APPLE</span></a>
           </div>
         </div>
 
@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
           <!-- Danh sách menu -->
           <ul class="navbar-nav mx-auto align-items-center">
-            <li class="nav-item"><a class="nav-link" routerLink="/home">Trang chủ</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/home" (click)="scrollToTop()">Trang chủ</a></li>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -31,14 +31,16 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li *ngFor="let category of categories">
-                  <a class="dropdown-item" href="#" style="color: black;">{{ category.category_name }}</a>
+                  <a class="dropdown-item" [routerLink]="['/products', category.category_id]" style="color: black;"
+                    (click)="scrollToTop()">{{
+                    category.category_name }}</a>
                 </li>
               </ul>
             </li>
 
-            <li class="nav-item"><a class="nav-link" routerLink="/shop">Sản phẩm</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/about">Về chúng tôi</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/contact">Liên hệ</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/shop" (click)="scrollToTop()">Sản phẩm</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/about" (click)="scrollToTop()">Về chúng tôi</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/contact" (click)="scrollToTop()">Liên hệ</a></li>
 
             <!-- Tìm kiếm / Giỏ hàng-->
             <li class="nav-item d-flex align-items-center">
@@ -56,15 +58,18 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title">Tìm kiếm</h5>
-                      <button type="button" class="btn-close" (click)="toggleSearch()" aria-label="Close"></button>
+                      <button type="button" class="btn-close" (click)="toggleSearch()" aria-label="Close"
+                        (click)="scrollToTop()"></button>
                     </div>
                     <div class="modal-body">
                       <input type="text" class="form-control" placeholder="Nhập từ khóa để tìm kiếm..."
                         [(ngModel)]="searchQuery" />
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" (click)="toggleSearch()">Đóng</button>
-                      <button type="button" class="btn btn-primary" (click)="performSearch()">Tìm kiếm</button>
+                      <button type="button" class="btn btn-secondary" (click)="toggleSearch()"
+                        (click)="scrollToTop()">Đóng</button>
+                      <button type="button" class="btn btn-primary" (click)="performSearch()"
+                        (click)="scrollToTop()">Tìm kiếm</button>
                     </div>
                   </div>
                 </div>
@@ -74,7 +79,7 @@
 
               <!-- Giỏ hàng -->
               <ng-container *ngIf="isLoggedIn()">
-                <a class="btn d-flex align-items-center" routerLink="/checkout"
+                <a class="btn d-flex align-items-center" routerLink="/checkout" (click)="scrollToTop()"
                   style="color: #000; background-color: transparent; border: none; text-decoration: none;">
                   <i class="bi bi-cart me-1" style="color: #000;"></i>{{ cartCount }}
                 </a>
@@ -95,7 +100,7 @@
                 <!-- Danh sách trong dropdown -->
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                   <li>
-                    <a class="dropdown-item" routerLink="/profile" style="color: black;">
+                    <a class="dropdown-item" routerLink="/profile" (click)="scrollToTop()" style="color: black;">
                       <i class="bi bi-person"></i> Truy cập hồ sơ
                     </a>
                   </li>
@@ -108,7 +113,7 @@
                   </li>
 
                   <li>
-                    <a class="dropdown-item" href="#" (click)="logout()" style="color: black;">
+                    <a class="dropdown-item" href="#" (click)="logout()" (click)="scrollToTop()" style="color: black;">
                       <i class="bi bi-box-arrow-right"></i> Đăng xuất
                     </a>
                   </li>
@@ -120,7 +125,8 @@
 
               <!-- Nút Đăng nhập/ Đăng ký -->
               <ng-template #loginMenu>
-                <a class="btn btn-primary d-flex align-items-center gap-2 px-3 py-2 rounded-pill" routerLink="/login">
+                <a class="btn btn-primary d-flex align-items-center gap-2 px-3 py-2 rounded-pill" routerLink="/login"
+                  (click)="scrollToTop()">
                   <i class="bi bi-person-circle"></i>
                   Tài khoản
                 </a>

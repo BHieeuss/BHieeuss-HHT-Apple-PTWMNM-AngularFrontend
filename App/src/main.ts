@@ -15,6 +15,7 @@ import { ShopSingleComponent } from './app/page/shop-single/shop-single.componen
 import { AddAddressComponent } from './app/user/add-address/add-address.component';
 import { CartComponent } from './app/page/cart/cart.component';
 import { SearchResultsComponent } from './app/page/search-results/search-results.component';
+import { CategoryComponent } from './app/page/category/category.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: 'changepass', component: ChangepasswordComponent, data: { breadcrumb: 'Quên mật khẩu' } },
     { path: 'shop', component: ShopComponent, data: { breadcrumb: 'Sản phẩm' } },
     { path: 'checkout', component: CartComponent, data: { breadcrumb: 'Thanh toán' } },
+    { path: 'products/:categoryId', component: CategoryComponent, data: { breadcrumb: 'Danh mục sản phẩm' } },
     { path: 'product/:id', component: ShopSingleComponent, data: { breadcrumb: 'Sản phẩm' } },
     { path: 'search-results', component: SearchResultsComponent, data: { breadcrumb: 'Sản phẩm tìm kiếm..' } },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
