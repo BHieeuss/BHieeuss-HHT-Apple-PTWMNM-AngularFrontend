@@ -1,0 +1,15 @@
+/* Tùy chỉnh chiều rộng modal */
+.custom-modal-width {
+    max-width: 90%; /* Chiều rộng tối đa: 90% màn hình */
+}
+
+@media (min-width: 1200px) {
+    .custom-modal-width {
+        max-width: 80%; /* Giới hạn chiều rộng tối đa cho màn hình lớn */
+    }
+}
+
+.modal-content {
+    border-radius: 10px; /* Tạo bo tròn các góc */
+    padding: 10px; /* Khoảng cách bên trong */
+}

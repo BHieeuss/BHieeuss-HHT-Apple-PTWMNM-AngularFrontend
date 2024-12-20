@@ -118,7 +118,7 @@ getAddresses(): Observable<any> {
 
       //Lấy mã giảm giá
       getCoupons(): Observable<any> {
-        return this.http.get('http://localhost:8000/coupon/get-all');
+        return this.http.get(`${this.apiUrl}/coupon/get-all`);
       }
 
       // Lấy sản phẩm theo danh mục

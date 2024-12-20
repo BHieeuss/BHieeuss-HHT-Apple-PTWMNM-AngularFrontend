@@ -38,7 +38,9 @@ const routes: Routes = [
 
 bootstrapApplication(AppComponent, {
     providers: [
-        provideRouter(routes, withHashLocation()),
-        provideHttpClient(), provideAnimationsAsync(),
+        provideRouter(routes, 
+        withHashLocation()),
+        provideHttpClient(),
+        provideAnimationsAsync(),
     ],
 }).catch((err) => console.error(err));

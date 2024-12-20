@@ -1,0 +1,53 @@
+<!-- order.component.html -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Mã Đơn hàng</th>
+            <th scope="col">Ngày đặt</th>
+            <th scope="col">Phí vận chuyển</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Thanh toán</th>
+            <th scope="col">Tổng tiền</th>
+            <th scope="col" class="text-center">Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of orders">
+            <td>{{ order.order_id }}</td>
+            <td>{{ order.order_date | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ order.shipping_cost || 'Chưa có' }}</td>
+            <td>
+                <span *ngIf="order.is_actived" class="badge bg-success">Kích hoạt</span>
+                <span *ngIf="!order.is_actived" class="badge bg-danger">Chưa kích hoạt</span>
+            </td>
+            <td>{{ order.payment }}</td>
+            <td>{{ order.total_amount | currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+            <td class="text-center">
+                <!-- Nút xem chi tiết đơn hàng -->
+                <button class="btn btn-sm btn-primary" (click)="showOrderDetails(order.order_id)">
+                    <i class="bi bi-eye"></i> Xem
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg custom-modal-width"> <!-- Thêm class tùy chỉnh -->
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="modalTitle">Chi tiết đơn hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="modalBody">
+                </div>
+            </div>
+            <h4 class="text-end">Tổng giá tiền: {{ totalPrice | number:'1.0-0' }} VND</h4>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary">In hóa đơn</button>
+            </div>
+        </div>
+    </div>
+</div>

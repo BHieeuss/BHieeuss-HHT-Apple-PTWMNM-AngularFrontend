@@ -22,7 +22,7 @@ export class ApiService {
 
   // Cập nhật danh mục
   updateCategory(categoryId: number, categoryName: string): Observable<any> {
-    const url = `${this.apiUrl}/category/update/${categoryId}`;  // Endpoint cho "update"
+    const url = `${this.apiUrl}/category/update/${categoryId}`;
     return this.http.put(url, { category_name: categoryName });
   }
 
@@ -75,5 +75,10 @@ getCouponById(couponId: number): Observable<any> {
 // Cập nhật thông tin coupon
 updateCoupon(couponId: number, coupon: any): Observable<any> {
   return this.http.put<any>(`${this.apiUrl}/coupon/update/${couponId}`, coupon);
+}
+
+//Đặt hàng
+getOrders(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/order/get-all`);
 }
 }

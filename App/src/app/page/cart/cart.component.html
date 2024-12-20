@@ -19,8 +19,8 @@
                 <td>{{ product.product_name }}</td>
                 <td>{{ product.price | number }} VNĐ</td>
                 <td>{{ product.discount | number }} VNĐ</td>
-                <td>{{ cartItems[i]?.quantity }}</td>
-                <td>{{ getProductTotal(product, i) | currency }}</td>
+                <td>{{ cartItems[i]?.quantity }} </td>
+                <td>{{ getProductTotal(product, i)| number }} VNĐ</td>
                 <td>
                     <button class="btn btn-danger btn-sm" (click)="removeProduct(i)">Xóa</button>
                 </td>

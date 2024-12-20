@@ -154,9 +154,8 @@ export class CartComponent implements OnInit {
       this.totalAmount += price * quantity;
     });
   
-    // Áp dụng giảm giá nếu có mã giảm giá
     if (this.selectedCouponDetails) {
-      const discountPercent = this.selectedCouponDetails.discount_percent; // Lấy tỷ lệ giảm giá từ mã giảm giá
+      const discountPercent = this.selectedCouponDetails.discount_percent;
       if (discountPercent > 0) {
         // Tính tiền giảm giá
         this.discountAmount = (this.totalAmount * discountPercent) / 100;

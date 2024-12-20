@@ -4,7 +4,6 @@ import { ApiService } from '../../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
-import { CartService } from '../../cart.service';
 
 @Component({
   selector: 'app-shop-single',
@@ -16,7 +15,7 @@ export class ShopSingleComponent implements OnInit {
   product: any = {}; 
   quantity: number = 1;
 
-  constructor(private router: Router, private apiService: ApiService, private cartService: CartService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private apiService: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const productId = this.route.snapshot.paramMap.get('id'); 

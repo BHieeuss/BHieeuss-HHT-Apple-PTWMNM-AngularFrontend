@@ -1,0 +1,33 @@
+.access-denied-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8d7da;
+}
+
+.access-denied-message {
+    text-align: center;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+}
+
+.access-denied-message h1 {
+    color: #dc3545;
+    font-size: 48px;
+}
+
+.access-denied-message p {
+    color: #721c24;
+    font-size: 18px;
+}
+
+.access-denied-message .icon {
+    font-size: 70px;
+    color: #dc3545;
+    margin-bottom: 20px;
+}
