@@ -17,9 +17,21 @@
             <td>{{ order.order_date | date:'dd/MM/yyyy HH:mm' }}</td>
             <td>{{ order.shipping_cost || 'Chưa có' }}</td>
             <td>
-                <span *ngIf="order.is_actived" class="badge bg-success">Kích hoạt</span>
-                <span *ngIf="!order.is_actived" class="badge bg-danger">Chưa kích hoạt</span>
+                <select class="form-select form-select-sm" [value]="order.status" [ngClass]="{
+                        'bg-warning text-dark': order.status === 'Pending',
+                        'bg-success text-light': order.status === 'Accepted' || order.status === 'Successed',
+                        'bg-primary text-light': order.status === 'Shipping',
+                        'bg-danger text-light': order.status === 'Canceled'
+                    }" (change)="onStatusChange($event, order.order_id)"
+                    style="background-color: white; color: rgb(255, 255, 255);">
+                    <option value="Pending">Pending</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Shipping">Shipping</option>
+                    <option value="Successed">Successed</option>
+                    <option value="Canceled">Canceled</option>
+                </select>
             </td>
+
             <td>{{ order.payment }}</td>
             <td>{{ order.total_amount | currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
             <td class="text-center">

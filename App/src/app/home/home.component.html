@@ -1,41 +1,50 @@
-<div class="site-blocks-cover inner-page" data-aos="fade">
+<div class="site-blocks-cover inner-page py-5 bg-light" data-aos="fade">
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 ml-auto order-md-2 align-self-start" style="color: black;">
+    <div class="row align-items-center">
+      <!-- Nội dung bên trái -->
+      <div class="col-md-6 ml-auto order-md-2 text-black">
         <div class="site-block-cover-content">
-          <h2 class="sub-title">#Sản phẩm mới mùa đông 2024</h2>
-          <h1>Arrivals Sales</h1>
-          <p><a href="#" class="btn btn-black rounded-0" routerLink="/shop">Mua ngay</a></p>
+          <h2 class="sub-title text-uppercase text-primary">#Sản phẩm mới mùa đông 2024</h2>
+          <h1 class="display-4 font-weight-bold">Arrivals Sales</h1>
+          <p class="lead">Khám phá những sản phẩm hot nhất mùa đông năm nay. Ưu đãi đặc biệt dành riêng cho bạn!</p>
+          <p>
+            <a href="#" class="btn btn-primary rounded-pill px-4 py-2" routerLink="/shop">Mua ngay</a>
+          </p>
+          <p class="text-muted small">Giảm giá lên tới 50% cho các sản phẩm mới nhất. Nhanh tay để không bỏ lỡ!</p>
         </div>
       </div>
-      <div class="col-md-6 order-1 align-self-end">
-        <img src="/assets/img/bg.png" alt="Image" class="img-fluid bg">
+
+      <!-- Hình ảnh bên phải -->
+      <div class="col-md-6 order-1">
+        <img src="/assets/img/bg.png" alt="Image" class="img-fluid rounded">
       </div>
     </div>
   </div>
 </div>
 
+
 <hr>
+
 <!-- Content -->
 <div class="site-section">
   <div class="container">
     <div class="title-section mb-5">
-      <h2 class="text-uppercase"><span class="d-block">Discover</span> The Collections</h2>
+      <h2 class="text-uppercase"><span class="d-block">Bộ sưu tập</span> của chúng tôi</h2>
     </div>
     <div class="row align-items-stretch">
       <div class="col-lg-8">
-        <div class="product-item sm-height full-height bg-gray iphone">
+        <div class="product-item sm-height full-height bg-gray iphone list">
           <a routerLink="/products/8" class="product-category" (click)="scrollToTop()">Điện thoại</a>
           <img src="/assets/img/iphone.png" alt="Image" class="img-fluid" style="max-width: 150em;">
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="product-item sm-height bg-gray mb-4">
+        <div class="product-item sm-height bg-gray mb-4 list">
           <a routerLink="/products/9" class="product-category" (click)="scrollToTop()">Phụ kiện</a>
           <img src="/assets/img/airpods.png" alt="Image" class="img-fluid airpods">
         </div>
 
-        <div class="product-item sm-height bg-gray">
+        <div class="product-item sm-height bg-gray list">
           <a routerLink="/products/11" class="product-category" (click)="scrollToTop()">Khác</a>
           <img src="/assets/img/watch.png" alt="Image" class="img-fluid ">
         </div>
@@ -50,7 +59,7 @@
   <div class="container">
     <div class="row">
       <div class="title-section mb-5 col-12">
-        <h2 class="text-uppercase">Popular Products</h2>
+        <h2 class="text-uppercase">Sản phẩm nổi bật</h2>
       </div>
     </div>
     <div class="row">

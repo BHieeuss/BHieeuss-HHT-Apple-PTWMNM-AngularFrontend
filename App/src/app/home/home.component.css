@@ -29,3 +29,12 @@
     height: 309px;
     padding: 40px;
 }
+.product-category
+{
+    background-color: rgb(75, 75, 75);
+    color: white;
+}
+.list
+{
+    background-image: url('/assets/img/bgip.png');
+}

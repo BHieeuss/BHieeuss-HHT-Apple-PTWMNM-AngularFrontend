@@ -1,3 +1,4 @@
+declare const bootstrap: any;
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
@@ -23,11 +24,12 @@ import { FormsModule } from '@angular/forms';
     fileName: ''
   };
 
+  orders: any[] = [];
+  orderItems: any[] = [];
+  totalPrice: number = 0; 
   addresses: any[] = [];
 
   selectedFile: File | null = null;
-
-
 
   constructor(private cdr: ChangeDetectorRef, private apiService: ApiService, private http: HttpClient) {}
 
@@ -189,19 +191,131 @@ import { FormsModule } from '@angular/forms';
     });
   }
 
-getAddresses(): void {
-    this.apiService.getAddresses().subscribe(
-      (response: any) => {
-        if (response.status) {
-          this.addresses = response.data;
-        } else {
-          console.error('Failed to fetch addresses');
+  getAddresses(): void {
+      this.apiService.getAddresses().subscribe(
+        (response: any) => {
+          if (response.status) {
+            this.addresses = response.data;
+          } else {
+            console.error('Failed to fetch addresses');
+          }
+        },
+        (error) => {
+          console.error('Error fetching addresses', error);
         }
-      },
-      (error) => {
-        console.error('Error fetching addresses', error);
-      }
-    );
-  }
+      );
+    }
 
+    showOrderDetails(): void {
+      // Lấy customerId từ localStorage
+      const customerId = localStorage.getItem('user_id');
+      if (!customerId) {
+        alert('Không tìm thấy thông tin khách hàng.');
+        return;
+      }
+    
+      this.http.get<any[]>(`http://localhost:8000/order/get-by-customer-id/${customerId}`).subscribe(
+        async (orders) => {
+          if (!orders || orders.length === 0) {
+            alert('Không có đơn hàng nào của khách hàng này.');
+            return;
+          }
+    
+          // Xử lý tất cả các đơn hàng trong mảng
+          let orderDetails = '';
+          for (const order of orders) {
+            // Tính tổng giá tiền
+            const totalPrice = this.calculateTotalPrice(order.order_items);
+    
+            // Xử lý địa chỉ
+            const address = order.address
+              ? `
+                <p><strong>Họ và tên:</strong> ${order.address.full_name}</p>
+                <p><strong>Số điện thoại:</strong> ${order.address.phone}</p>
+                <p><strong>Địa chỉ:</strong> ${order.address.final_address}</p>
+              `
+              : '<p>Không có thông tin địa chỉ</p>';
+    
+            // Xử lý trạng thái
+            const status = order.status
+              ? `<p><strong>Trạng thái:</strong> ${order.status}</p>`
+              : '<p>Không có trạng thái</p>';
+    
+            // Danh sách sản phẩm
+            let productDetails = '';
+            if (order.order_items && order.order_items.length > 0) {
+              productDetails = `
+                <table class="table table-bordered">
+                  <thead class="table-primary">
+                    <tr>
+                      <th>Hình ảnh</th>
+                      <th>Tên sản phẩm</th>
+                      <th>Số lượng</th>
+                      <th>Đơn giá (VND)</th>
+                      <th>Tổng (VND)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+              `;
+    
+              // Sử dụng Promise.all để tải thông tin sản phẩm
+              const productPromises = order.order_items.map(async (item: any) => {
+                const product = await this.http
+                  .get<any>(`http://localhost:8000/product/get-by-id/${item.product_id}`)
+                  .toPromise();
+    
+                return `
+                  <tr>
+                    <td><img src="https://localhost:1009/${product.image_url}" alt="${product.product_name}" width="100" height="100"></td>
+                    <td>${product.product_name}</td>
+                    <td>${item.quantity}</td>
+                    <td>${new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(Number(item.unit_price))}</td>
+                    <td>${new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.total_price)}</td>
+                  </tr>`;
+              });
+    
+              const productRows = await Promise.all(productPromises);
+              productDetails += productRows.join('');
+              productDetails += `
+                  </tbody>
+                </table>`;
+            } else {
+              productDetails = '<p>Không có sản phẩm trong đơn hàng này</p>';
+            }
+    
+            // Gộp chi tiết đơn hàng vào chuỗi
+            orderDetails += `
+              <div class="order-details">
+                <h4>Đơn hàng #${order.id}</h4>
+                ${address}
+                ${status}
+                <h5>Danh sách sản phẩm:</h5>
+                ${productDetails}
+                <p><strong>Tổng giá tiền:</strong> ${new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}</p>
+                <hr />
+              </div>
+            `;
+          }
+    
+          // Hiển thị nội dung trong modal
+          const modalBody = document.getElementById('modalBody');
+          if (modalBody) modalBody.innerHTML = orderDetails;
+    
+          const modalElement = document.getElementById('orderDetailsModal');
+          if (modalElement) {
+            const bootstrapModal = new bootstrap.Modal(modalElement);
+            bootstrapModal.show();
+          }
+        },
+        (error) => {
+          console.error('Lỗi khi tải thông tin đơn hàng:', error);
+          alert('Không thể lấy thông tin đơn hàng.');
+        }
+      );
+    }
+    calculateTotalPrice(orderItems: any[]): number {
+      if (!orderItems || orderItems.length === 0) return 0;
+      return orderItems.reduce((sum, item) => sum + (item.total_price || 0), 0);
+    }
+    
 }
