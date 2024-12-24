@@ -1,86 +1,89 @@
-<div class="container mt-4">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body text-center">
-                    <!-- Ảnh đại diện -->
-                    <img *ngIf="user.img_avatar; else placeholder" [src]="'https://localhost:1009/' + user.img_avatar"
-                        alt="Profile Image" class="img-fluid rounded-circle mb-3" style="width: 120px;" />
-                    <ng-template #placeholder>
-                        <img src="https://via.placeholder.com/150" alt="Profile Image"
+<div class="site-section">
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <!-- Ảnh đại diện -->
+                        <img *ngIf="user.img_avatar; else placeholder"
+                            [src]="'https://localhost:1009/' + user.img_avatar" alt="Profile Image"
                             class="img-fluid rounded-circle mb-3" style="width: 120px;" />
-                    </ng-template>
+                        <ng-template #placeholder>
+                            <img src="https://via.placeholder.com/150" alt="Profile Image"
+                                class="img-fluid rounded-circle mb-3" style="width: 120px;" />
+                        </ng-template>
 
-                    <!-- Tên và email -->
-                    <h5 class="card-title">{{ user.username || 'Chưa có tên' }}</h5>
-                    <p class="card-text text-muted"><i class="bi bi-envelope"></i> {{ user.email || 'Chưa có email' }}
-                    </p>
+                        <!-- Tên và email -->
+                        <h5 class="card-title">{{ user.username || 'Chưa có tên' }}</h5>
+                        <p class="card-text text-muted"><i class="bi bi-envelope"></i> {{ user.email || 'Chưa có email'
+                            }}
+                        </p>
 
-                    <!-- Các nút chức năng -->
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-primary d-flex align-items-center justify-content-center"
-                            (click)="openUpdateProfileDialog()">
-                            <i class="bi bi-pencil-square me-2"></i> Cập nhật tài khoản
-                        </button>
-                        <button class="btn btn-secondary d-flex align-items-center justify-content-center"
-                            (click)="openUpdateImageDialog()">
-                            <i class="bi bi-image me-2"></i> Cập nhật ảnh đại diện
-                        </button>
-                        <button class="btn btn-info d-flex align-items-center justify-content-center"
-                            (click)="showOrderDetails()">
-                            <i class="bi bi-card-list me-2"></i> Xem đơn hàng
-                        </button>
-                        <a class="btn btn-success d-flex align-items-center justify-content-center"
-                            routerLink="/profile/add-address">
-                            <i class="bi bi-plus-circle me-2"></i> Thêm địa chỉ
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Main Content -->
-        <div class="col-md-9">
-            <!-- Account Information -->
-            <div class="card">
-                <div class="card-header">
-                    <h5>Thông tin tài khoản</h5>
-                </div>
-                <div class="card-body">
-                    <!-- Thông tin tài khoản -->
-                    <p><strong>Họ tên:</strong> {{ user.username || 'Chưa có thông tin' }}</p>
-                    <p><strong>Email:</strong> {{ user.email || 'Chưa có thông tin' }}</p>
-                    <p><strong>Số điện thoại:</strong> {{ user.phone_number || 'Chưa có thông tin' }}</p>
-                    <p><strong>Địa chỉ:</strong> {{ addresses[0]?.address || 'Chưa có địa chỉ' }} <strong>(Mặc
-                            định)</strong></p>
-                </div>
-            </div>
-
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h5>Quản lý địa chỉ</h5>
-                </div>
-                <div class="card-body">
-                    <div *ngIf="addresses.length === 0">
-                        <p class="text-center">Chưa có địa chỉ</p>
-                    </div>
-                    <div *ngFor="let address of addresses"
-                        class="d-flex justify-content-between align-items-center mb-3">
-                        <div>
-                            <p><strong>{{ address.full_name }}:</strong> {{ address.address }}</p>
-                            <p>{{ address.ward }}, {{ address.district }}, {{ address.province }}</p>
-                            <p><strong>Số điện thoại:</strong> {{ address.tel }}</p>
+                        <!-- Các nút chức năng -->
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary d-flex align-items-center justify-content-center"
+                                (click)="openUpdateProfileDialog()">
+                                <i class="bi bi-pencil-square me-2"></i> Cập nhật tài khoản
+                            </button>
+                            <button class="btn btn-secondary d-flex align-items-center justify-content-center"
+                                (click)="openUpdateImageDialog()">
+                                <i class="bi bi-image me-2"></i> Cập nhật ảnh đại diện
+                            </button>
+                            <button class="btn btn-info d-flex align-items-center justify-content-center"
+                                (click)="showOrderDetails()">
+                                <i class="bi bi-card-list me-2"></i> Xem đơn hàng
+                            </button>
+                            <a class="btn btn-success d-flex align-items-center justify-content-center"
+                                routerLink="/profile/add-address">
+                                <i class="bi bi-plus-circle me-2"></i> Thêm địa chỉ
+                            </a>
                         </div>
-                        <button class="btn btn-warning btn-sm">Chỉnh sửa</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <!-- Account Information -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Thông tin tài khoản</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Thông tin tài khoản -->
+                        <p><strong>Họ tên:</strong> {{ user.username || 'Chưa có thông tin' }}</p>
+                        <p><strong>Email:</strong> {{ user.email || 'Chưa có thông tin' }}</p>
+                        <p><strong>Số điện thoại:</strong> {{ user.phone_number || 'Chưa có thông tin' }}</p>
+                        <p><strong>Địa chỉ:</strong> {{ addresses[0]?.address || 'Chưa có địa chỉ' }} <strong>(Mặc
+                                định)</strong></p>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>Quản lý địa chỉ</h5>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="addresses.length === 0">
+                            <p class="text-center">Chưa có địa chỉ</p>
+                        </div>
+                        <div *ngFor="let address of addresses"
+                            class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <p><strong>{{ address.full_name }}:</strong> {{ address.address }}</p>
+                                <p>{{ address.ward }}, {{ address.district }}, {{ address.province }}</p>
+                                <p><strong>Số điện thoại:</strong> {{ address.tel }}</p>
+                            </div>
+                            <button class="btn btn-warning btn-sm">Chỉnh sửa</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">

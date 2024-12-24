@@ -1,88 +1,89 @@
-<div *ngIf="products.length > 0" class="container mt-5">
-    <h2 class="text-center mb-4" style="color: black;">THANH TOÁN</h2>
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th>Ảnh</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá</th>
-                <th>Giảm giá</th>
-                <th>Số lượng</th>
-                <th>Tổng</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let product of products; let i = index">
-                <td><img [src]=" 'https://localhost:1009/' +product.image_url" alt="{{ product.product_name }}"
-                        class="img-fluid" style="max-width: 100px;"></td>
-                <td>{{ product.product_name }}</td>
-                <td>{{ product.price | number }} VNĐ</td>
-                <td>{{ product.discount | number }} VNĐ</td>
-                <td>{{ cartItems[i]?.quantity }} </td>
-                <td>{{ getProductTotal(product, i)| number }} VNĐ</td>
-                <td>
-                    <button class="btn btn-danger btn-sm" (click)="removeProduct(i)">Xóa</button>
-                </td>
-            </tr>
-        </tbody>
-        <hr>
-        <div class="mt-4 text-left">
-            <button class="btn btn-warning" (click)="clearCart()">Xóa giỏ hàng</button>
-        </div>
-        <br>
-    </table>
-
-    <div class="form-group mt-4">
-
-        <div *ngIf="addresses && addresses.length > 0" class="mt-4">
-            <div class="form-group">
-                <label for="addressSelect" class="font-weight-bold" style="color: black;">Chọn địa chỉ giao
-                    hàng:</label>
-                <select class="form-control" id="addressSelect" (change)="selectAddress($event.target)">
-                    <option value="" disabled selected>--- Chọn địa chỉ giao hàng ---</option>
-                    <option *ngFor="let address of addresses" [value]="address.user_address_id">
-                        {{ address.full_name }}, {{ address.tel }} - {{ address.address }}, {{ address.ward }}, {{
-                        address.district }}, {{ address.province }}
-                    </option>
-                </select>
+<div class="site-section">
+    <div *ngIf="products.length > 0" class="container mt-5">
+        <h2 class="text-center mb-4" style="color: black;">THANH TOÁN</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Giảm giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products; let i = index">
+                    <td><img [src]=" 'https://localhost:1009/' +product.image_url" alt="{{ product.product_name }}"
+                            class="img-fluid" style="max-width: 100px;"></td>
+                    <td>{{ product.product_name }}</td>
+                    <td>{{ product.price | number }} VNĐ</td>
+                    <td>{{ product.discount | number }} VNĐ</td>
+                    <td>{{ cartItems[i]?.quantity }} </td>
+                    <td>{{ getProductTotal(product, i)| number }} VNĐ</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" (click)="removeProduct(i)">Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+            <hr>
+            <div class="mt-4 text-left">
+                <button class="btn btn-warning" (click)="clearCart()">Xóa giỏ hàng</button>
             </div>
-        </div>
-        <div *ngIf="addresses && addresses.length === 0" class="alert alert-warning mt-4">
-            <p>Không có địa chỉ nào để chọn.</p>
-        </div>
+            <br>
+        </table>
 
-        <div class="mt-4">
-            <button class="btn btn-info" (click)="chooseCoupon()">Chọn mã giảm giá</button>
-        </div>
+        <div class="form-group mt-4">
+            <div *ngIf="addresses && addresses.length > 0" class="mt-4">
+                <div class="form-group">
+                    <label for="addressSelect" class="font-weight-bold" style="color: black;">Chọn địa chỉ giao
+                        hàng:</label>
+                    <select class="form-control" id="addressSelect" (change)="selectAddress($event.target)">
+                        <option value="" disabled selected>--- Chọn địa chỉ giao hàng ---</option>
+                        <option *ngFor="let address of addresses" [value]="address.user_address_id">
+                            {{ address.full_name }}, {{ address.tel }} - {{ address.address }}, {{ address.ward }}, {{
+                            address.district }}, {{ address.province }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div *ngIf="addresses && addresses.length === 0" class="alert alert-warning mt-4">
+                <p>Không có địa chỉ nào để chọn.</p>
+            </div>
 
-        <div class="total d-flex justify-content-between align-items-center">
-            <ul class="total list-unstyled">
-                <li class="d-flex justify-content-between">
-                    <h5 class="text-black mb-0">
-                        Mã giảm giá:
-                        <strong class="text-success">{{ discountAmount | number }} VNĐ</strong>
-                    </h5>
-                </li>
-                <hr>
-                <li class="d-flex justify-content-between">
-                    <h5 class="text-black mb-0">
-                        Tổng tiền:
-                        <strong class="text-danger">{{ totalAmount | number }} VNĐ</strong>
-                    </h5>
-                </li>
-            </ul>
-            <!-- Thanh toán -->
-            <button class="btn btn-success btn-lg" (click)="createOrder()">Thanh toán</button>
-        </div>
+            <div class="mt-4">
+                <button class="btn btn-info" (click)="chooseCoupon()">Chọn mã giảm giá</button>
+            </div>
 
+            <div class="total d-flex justify-content-between align-items-center">
+                <ul class="total list-unstyled">
+                    <li class="d-flex justify-content-between">
+                        <h5 class="text-black mb-0">
+                            Mã giảm giá:
+                            <strong class="text-success">{{ discountAmount | number }} VNĐ</strong>
+                        </h5>
+                    </li>
+                    <hr>
+                    <li class="d-flex justify-content-between">
+                        <h5 class="text-black mb-0">
+                            Tổng tiền:
+                            <strong class="text-danger">{{ totalAmount | number }} VNĐ</strong>
+                        </h5>
+                    </li>
+                </ul>
+                <!-- Thanh toán -->
+                <button class="btn btn-success btn-lg" (click)="createOrder()">Thanh toán</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Hiển thị khi giỏ hàng trống -->
+    <div *ngIf="products.length === 0" class="container mt-5 text-center">
+        <div class="alert alert-warning" role="alert">
+            Giỏ hàng của bạn hiện tại trống.
+        </div>
     </div>
 </div>
-
-<!-- Hiển thị khi giỏ hàng trống -->
-<div *ngIf="products.length === 0" class="container mt-5 text-center">
-    <div class="alert alert-warning" role="alert">
-        Giỏ hàng của bạn hiện tại trống.
-    </div>
-</div>
-<hr>
+<br>

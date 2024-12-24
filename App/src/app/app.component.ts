@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, NavigationError, NavigationStart, Router, RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoadingService } from './loading.service';
 import { LoadingComponent } from './loading/loading.component';
+import { SnowEffectComponent } from './snow-effect/snow-effect.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FooterComponent, HeaderComponent, CommonModule, RouterModule, LoadingComponent],
+  imports: [FooterComponent, HeaderComponent, CommonModule, RouterModule, LoadingComponent, SnowEffectComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

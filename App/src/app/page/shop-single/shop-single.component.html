@@ -1,31 +1,28 @@
-<div class="container mt-5">
-    <div class="row">
-        <!-- Phần ảnh sản phẩm -->
-        <div class="col-md-6">
-            <img [src]="'https://localhost:1009/' + product.image_url" alt="Product Image"
-                class="img-fluid rounded shadow-sm" style="width: 500px; height: 500px;" />
+<div class="site-section">
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Phần ảnh sản phẩm -->
+            <div class="col-md-6">
+                <img [src]="'https://localhost:1009/' + product.image_url" alt="Product Image"
+                    class="img-fluid rounded shadow-sm" style="width: 500px; height: 500px;" />
 
-            <!-- Thêm class product-image -->
-            <ng-template #placeholder>
-                <img src="https://via.placeholder.com/500x500" alt="Product Image"
-                    class="img-fluid rounded shadow-sm product-image placeholder" /> <!-- Thêm class placeholder -->
-            </ng-template>
-        </div>
-
-        <!-- Phần thông tin sản phẩm -->
-        <div class="col-md-6 product-details">
-            <h2>{{ product.product_name }}</h2>
-            <p><strong>Giá: </strong> {{ (product.price - product.discount) | currency }}</p>
-
-            <p><strong>Số lượng còn lại: </strong> {{ product.quantity }}</p>
-
-            <div class="mb-3">
-                <label for="quantity">Số lượng: </label>
-                <input type="number" id="quantity" [(ngModel)]="quantity" class="form-control" min="1"
-                    [max]="product.quantity" />
+                <ng-template #placeholder>
+                    <img src="https://via.placeholder.com/500x500" alt="Product Image"
+                        class="img-fluid rounded shadow-sm product-image placeholder" /> <!-- Thêm class placeholder -->
+                </ng-template>
             </div>
-            <p><strong>Mô tả: </strong> {{ product.description }}</p>
-            <button class="btn btn-primary" (click)="addToCart()">Thêm vào giỏ hàng</button>
+
+            <!-- Phần thông tin sản phẩm -->
+            <div class="col-md-6 product-details">
+                <h2>{{ product.product_name }}</h2>
+                <p><strong>Giá: </strong> <span style="color: red;">{{ (product.price - product.discount) | number }}
+                        VNĐ</span></p>
+
+                <p><strong>Số lượng còn lại: </strong> {{ product.quantity }}</p>
+
+                <p><strong>Mô tả: </strong> {{ product.description }}</p>
+                <button class="btn btn-primary" (click)="addToCart()">Thêm vào giỏ hàng</button>
+            </div>
         </div>
     </div>
 </div>

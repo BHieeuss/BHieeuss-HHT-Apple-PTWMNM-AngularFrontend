@@ -75,21 +75,18 @@ export class ChangepasswordComponent implements OnDestroy {
     );
   }
 
-  // Bắt đầu đếm ngược
   startCountdown() {
-    this.countdown = 90;  // Reset lại thời gian đếm ngược mỗi lần bắt đầu
-    this.resendAvailable = false;  // Đảm bảo gửi lại OTP không khả dụng ngay lập tức
-
-    // Sử dụng RxJS interval để đếm ngược
+    this.countdown = 90; 
+    this.resendAvailable = false;
     this.timerSubscription = interval(1000).pipe(
-      take(this.countdown)  // Đếm 90 giây
+      take(this.countdown) 
     ).subscribe(
       (timeElapsed) => {
-        this.countdown = 90 - timeElapsed;  // Cập nhật countdown mỗi giây
+        this.countdown = 90 - timeElapsed; 
       },
       () => {},
       () => {
-        this.resendAvailable = true;  // Cho phép gửi lại OTP khi hết thời gian
+        this.resendAvailable = true;
       }
     );
   }

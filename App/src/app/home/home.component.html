@@ -1,46 +1,46 @@
-<div class="site-blocks-cover inner-page py-5 bg-light" data-aos="fade">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- Nội dung bên trái -->
-      <div class="col-md-6 ml-auto order-md-2 text-black">
-        <div class="site-block-cover-content">
-          <h2 class="sub-title text-uppercase text-primary">#Sản phẩm mới mùa đông 2024</h2>
-          <h1 class="display-4 font-weight-bold">Arrivals Sales</h1>
-          <p class="lead">Khám phá những sản phẩm hot nhất mùa đông năm nay. Ưu đãi đặc biệt dành riêng cho bạn!</p>
-          <p>
-            <a href="#" class="btn btn-primary rounded-pill px-4 py-2" routerLink="/shop">Mua ngay</a>
-          </p>
-          <p class="text-muted small">Giảm giá lên tới 50% cho các sản phẩm mới nhất. Nhanh tay để không bỏ lỡ!</p>
+<section>
+  <div class="site-blocks-cover inner-page py-5 bg-light" data-aos="fade">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Nội dung bên trái -->
+        <div class="col-md-6 ml-auto order-md-2 text-black">
+          <div class="site-block-cover-content">
+            <h2 class="sub-title text-uppercase text-primary">#Sản phẩm mới mùa đông 2024</h2>
+            <h1 class="display-4 font-weight-bold">Arrivals Sales</h1>
+            <p class="lead">Khám phá những sản phẩm hot nhất mùa đông năm nay. Ưu đãi đặc biệt dành riêng cho bạn!</p>
+            <p>
+              <a href="#" class="btn btn-primary rounded-pill px-4 py-2" routerLink="/shop">Mua ngay</a>
+            </p>
+            <p class="text-muted small">Giảm giá lên tới 50% cho các sản phẩm mới nhất. Nhanh tay để không bỏ lỡ!</p>
+          </div>
         </div>
-      </div>
 
-      <!-- Hình ảnh bên phải -->
-      <div class="col-md-6 order-1">
-        <img src="/assets/img/bg.png" alt="Image" class="img-fluid rounded">
+        <!-- Hình ảnh bên phải -->
+        <div class="col-md-6 order-1">
+          <img src="/assets/img/bg.png" alt="Image" class="img-fluid rounded">
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-
-<hr>
+</section>
 
 <!-- Content -->
 <div class="site-section">
   <div class="container">
+    <!-- Bộ sưu tập -->
     <div class="title-section mb-5">
       <h2 class="text-uppercase"><span class="d-block">Bộ sưu tập</span> của chúng tôi</h2>
     </div>
     <div class="row align-items-stretch">
       <div class="col-lg-8">
         <div class="product-item sm-height full-height bg-gray iphone list">
-          <a routerLink="/products/8" class="product-category" (click)="scrollToTop()">Điện thoại</a>
+          <a routerLink="/products/8" class="product-category" (click)="scrollToTop()">Iphone</a>
           <img src="/assets/img/iphone.png" alt="Image" class="img-fluid" style="max-width: 150em;">
         </div>
       </div>
       <div class="col-lg-4">
         <div class="product-item sm-height bg-gray mb-4 list">
-          <a routerLink="/products/9" class="product-category" (click)="scrollToTop()">Phụ kiện</a>
+          <a routerLink="/products/9" class="product-category" (click)="scrollToTop()">Airpods</a>
           <img src="/assets/img/airpods.png" alt="Image" class="img-fluid airpods">
         </div>
 
@@ -50,13 +50,8 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-
-<hr>
-<div class="site-section">
-  <div class="container">
+    <hr>
+    <!-- Sản phẩm nổi bật -->
     <div class="row">
       <div class="title-section mb-5 col-12">
         <h2 class="text-uppercase">Sản phẩm nổi bật</h2>
@@ -66,11 +61,13 @@
       <div *ngFor="let product of products" class="col-lg-2 col-md-4 col-sm-6 item-entry mb-4">
         <a [routerLink]="['/product', product.product_id]" (click)="scrollToTop()"
           class="product-item md-height d-block">
-          <img [src]="'https://localhost:1009/' + product.image_url" alt="Image" class="img-fluid product-image">
+          <img [src]="'https://localhost:1009/' + product.image_url" alt="Image" class="img-fluid product-image"
+            style="width: 250px;">
         </a>
-        <h2 class="item-title" style="min-height: 50px; color:black ">
-          <a [routerLink]="['/product', product.product_id]" style="color: inherit; text-decoration: none;">{{
-            product.product_name }}</a>
+        <h2 class="item-title" style="min-height: 50px; color:black">
+          <a [routerLink]="['/product', product.product_id]" style="color: inherit; text-decoration: none;">
+            {{ product.product_name }}
+          </a>
         </h2>
         <strong class="item-price" style="color: rgb(255, 0, 0);">
           <p><del *ngIf="product.discount">{{ product.price | number }} VNĐ</del></p>
